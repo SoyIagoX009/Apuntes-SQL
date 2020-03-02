@@ -9,9 +9,20 @@ Estos apuntes usan como sistema gestor *PostgreSQL*, nos conectamos a una base d
 ### Activar la virtualización por hardware
 La virtualización por hardware es necesaria para ejecutar `WSL`; para activarla --si no la tenemos ya-- hacemos lo siguiente:
 
-Nos dirigimos al menu inicio, pulsamos sobre Inicio/Apagado y, pulsando la tecla `Shift` o `Mayus` (situada bajo `Caps Lock` o `Bloc. Mayus`) hacemos clic sobre `Reiniciar`.
+![Menu Inicio -> Inicio/Apagado -> (Shift) + Reiniciar](./README_imgs/1_1.png?raw=true)
+Nos dirigimos al *Menu inicio*, pulsamos sobre `⏻ Inicio/Apagado` y, pulsando la tecla `Shift` o `Mayus` (situada bajo `Caps Lock` o `Bloc. Mayus`), hacemos clic sobre `↺ Reiniciar`.
 
-Windows deberia abrirnos el cargador de arranque, pulsamos sobre `Solucionar problemas`, luego, `Opciones Avanzadas`, y por ultimo `Configuración del Firmware UEFI`. El ordenador deberia reiniciarse y arrancar en la BIOS, ahora toca rebuscar para encontrar la opción de virtualización por hardware, segun el ordenador que estemos usando el como llegar sera diferente, leer el manual o buscar en Google seguramente agilice el proceso; tras hacer el cambio, buscamos la opción de Guardar y Salir, y deberiamos estar de vuelta en Windows.
+![Solucionar Problemas, como el Sr. Lobo](./README_imgs/1_2.png?raw=true)
+Windows deberia abrirnos el cargador de arranque, pulsamos sobre `Solucionar problemas`. 
+
+![Opciones Avanzadas](./README_imgs/1_3.png?raw=true)
+Luego, `Opciones Avanzadas`.
+
+![Configuración del Firmware UEFI](./README_imgs/1_4.png?raw=true)
+Y por ultimo `Configuración del Firmware UEFI`. 
+
+![Reiniciar](./README_imgs/1_5.png?raw=true)
+Pulsamos sobre `Reiniciar` y el PC deberia arrancar en la BIOS, ahora toca rebuscar para encontrar la opción de virtualización por hardware, segun el ordenador que estemos usando el como llegar sera diferente, leer el manual o buscar en Google seguramente agilice el proceso; tras hacer el cambio, buscamos la opción de Guardar y Salir, y deberiamos estar de vuelta en Windows.
 
 NOTA: **En equipos con BIOS heredada** para acceder a esta configuración hay que pulsar una tecla nada más el equipo da imagen, en lugar de los pasos anteriores [💩](https://www.google.com/search?q=uefi+memes&tbm=isch), dicha tecla habitualmente suele ser `F2`, `F12`, o `Suprimir`.
 
