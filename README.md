@@ -1,10 +1,12 @@
 # Apuntes de SQL
 Apuntes de SQL para el curso 2019/2020.
 
-Los apuntes estan disponibles en el archivo `APUNTES.md`, de este mismo repositorio.
+Los apuntes estan disponibles en el archivo `APUNTES.md`, de este mismo repositorio. Este archivo contiene instrucciones para configurar un entorno de trabajo donde probar los ejemplos de dicho documento.
 
 ## Poner en marcha el entorno de trabajo
 Estos apuntes usan como sistema gestor *PostgreSQL*, nos conectamos a una base de datos en el servicio *ElephantSQL*, nos registarmos con el plan gratuito, para conectarnos a la base de datos usamos el paquete `postgresql` en una instalación de `Ubuntu 18.04 LTS` bajo `Windows Subsystem for Linux (WSL)` en `Windows 10`.
+
+Todos los comandos usados en `WSL` son identicos a los que responderia un sistema `Ubuntu 18.04 LTS` con el mismo software. Si prefieres usar Ubuntu puro, ya sea en una maquina virtual o instalado propiamente en el PC, evita los dos primeros puntos y empieza en `Instalar el cliente PostgreSQL`.
 
 ### Activar la virtualización por hardware
 La virtualización por hardware es necesaria para ejecutar `WSL`; para activarla --si no la tenemos ya-- hacemos lo siguiente:
@@ -35,6 +37,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 Una vez la instalación finalice, si es necesario, reiniciamos, luego instalamos [Ubuntu 18.04 desde la Tienda de Microsoft](https://www.microsoft.com/store/apps/9N9TNGVNDL3Q), opcionalmente, para mayor comodidad, tambien podemos instalar [Windows Terminal](https://aka.ms/windowsterminal).
 
+### Instalar el cliente PostgreSQL
 --- TBC ---
 
 ## Cargar y restaurar la base de datos
