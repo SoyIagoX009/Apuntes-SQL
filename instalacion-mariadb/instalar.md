@@ -40,12 +40,14 @@ Ahora, ejecutamos la siguiente sentencia SQL:
 CREATE USER 'username' IDENTIFIED BY 'averysecurepswd';
 ```
 > Cambiamos _username_ por nuestro usuario UNIX si queremos iniciar el cliente SQL sin proporcionar un nombre de usuario concreto.
+
 > Seria recomendable cambiar _averysecurepaswd_ por una contraseña segura.
 
 ![Consola mostrando el shell de MariaDB, tras haber ejecutado 'mysql -p'](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/20.PNG?raw=true)
 **Ahora ya deberíamos poder acceder al servidor sin permisos de superusuario** (obviando el `sudo`), ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el shell de MariaDB.
 
 > Si no usamos el nombre de usuario UNIX como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
+
 > Podemos proporcionar directamente la contraseña de acceso a la base de datos haciendo `mysql -p averysecurepswd` pero, de esta manera, la contarseña se almacenaría en el historial de comandos, reduciendo la seguridad.
 
 Ahora el servidor ya se encuentra listo para ser usado, recordar que **cualquier usuario que creemos de esta manera tiene permiso absoluto sobre todos la información del servidor** salvo que ejecutemos consultas SQL que le cambien los permisos.
