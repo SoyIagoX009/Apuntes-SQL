@@ -17,7 +17,7 @@ Lo siguiente sera ejecutar `sudo apt-get upgrade` para actualizar todos los paqu
 
 APT _(Advanced Packaging Tool)_ nos mostrara que paquetes se actualizaran a una versión más reciente, nos avisara del cambio en el espacio del disco duro y nos preguntara si queremos continuar.
 
-__Pulsamos `Y` (Yes -- Sí) para iniciar el proceso de actualización.__
+__Pulsamos `Y`__ _(Yes -- Sí)_ __para iniciar el proceso de actualización.__
 
 ![Consola con el comando 'sudo apt-get upgrade', en proceso de actualizar, solicitando permiso para reiniciar servicios](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/4.PNG?raw=true)
 
@@ -33,7 +33,7 @@ La instalación de MariaDB en Ubuntu es un proceso sencillo ya que tenemos dispo
 
 Similar al proceso de actualizar los paquetes del sistema, APT nos listara los paquetes adicionales que necesita MariaDB Server para funcionar correctamente y del requerimiento de espacio que eso conlleva.
 
-__Pulsamos `Y` (Yes -- Sí) para que comience la descarga e instalación.__
+__Pulsamos `Y`__ _(Yes -- Sí)_ __para que comience la descarga e instalación.__
 
 ## Arrancando el servidor por primera vez
 
@@ -58,10 +58,10 @@ CREATE USER 'username' IDENTIFIED BY 'averysecurepswd';
 
 ![Consola mostrando el shell de MariaDB, tras haber ejecutado 'mysql -p'](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/20.PNG?raw=true)
 
-**Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuario** (obviando el `sudo`), ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el shell de MariaDB.
+__Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuario__ (obviando el `sudo`), ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el shell de MariaDB.
 
 > Si no usamos el nombre de usuario de Ubuntu como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
 
-> Podemos proporcionar directamente la contraseña de acceso a la base de datos haciendo `mysql -p averysecurepswd` pero, de esta manera, la contarseña se almacenaría en el historial de comandos, reduciendo la seguridad.
+> Podemos proporcionar directamente la contraseña de usuario en el servidor haciendo `mysql -p averysecurepswd` pero, de esta manera, __la contraseña se almacenaría en el historial de comandos__, reduciendo la seguridad.
 
 Ahora el servidor ya se encuentra listo para ser usado, recordar que **cualquier usuario que creemos de esta manera tiene permiso absoluto sobre toda la información contenida en el servidor** salvo que ejecutemos consultas SQL que le cambien los permisos.
