@@ -11,7 +11,7 @@ Lo siguiente sera ejecutar <sudo apt-get upgrade> para actualizar todos los paqu
 
 > Si contamos con una mala conexión a Internet podemos obviar este paso, pero es mejor hacerlo de ser posible 😠.
 
-![Consola con el comando 'sudo apt-get upgrade', solicitando permiso para actualizar](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/3.png?raw=true)
+![Consola con el comando 'sudo apt-get upgrade', solicitando permiso para actualizar](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/3.PNG?raw=true)
 APT (Advanced Packaging Tool) nos mostrara que paquetes se actualizaran a una versión más reciente, nos avisara del cambio en el espacio del disco duro y nos preguntara si queremos continuar, Pulsamos <Y> (Yes -- Sí) para iniciar el proceso de actualización.
 
 ![Consola con el comando 'sudo apt-get upgrade', en proceso de actualizar, solicitando permiso para reiniciar servicios](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/4.png?raw=true)
