@@ -9,13 +9,13 @@ Ejecutamos el comando `sudo apt-get update` con la finalidad de tener actualizad
 ![Consola con el comando 'sudo apt-get upgrade'](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/2.PNG?raw=true)
 Lo siguiente sera ejecutar `sudo apt-get upgrade` para actualizar todos los paquetes instalados en el sistema.
 
-` Si contamos con una mala conexión a Internet podemos obviar este paso, pero es mejor hacerlo de ser posible 😠.
+> Si contamos con una mala conexión a Internet podemos obviar este paso, pero es mejor hacerlo de ser posible 😠.
 
 ![Consola con el comando 'sudo apt-get upgrade', solicitando permiso para actualizar](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/3.PNG?raw=true)
 APT (Advanced Packaging Tool) nos mostrara que paquetes se actualizaran a una versión más reciente, nos avisara del cambio en el espacio del disco duro y nos preguntara si queremos continuar, Pulsamos `Y` (Yes -- Sí) para iniciar el proceso de actualización.
 
 ![Consola con el comando 'sudo apt-get upgrade', en proceso de actualizar, solicitando permiso para reiniciar servicios](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/4.PNG?raw=true)
-Dependiendo de los paquetes a actualizar es posible que aparezca un mensaje como el siguiente, preguntando sobre el reinicio automático de servicios que han sido actualizados, le concederemos permiso seleccionado `Yes`.
+Dependiendo de los paquetes a actualizar es posible que aparezca un mensaje como el siguiente, preguntando sobre el reinicio automático de servicios que han sido actualizados, le concederemos permiso seleccionado `<Yes>`.
 
 ## Instalando MariaDB
 
@@ -39,13 +39,13 @@ Ahora, ejecutamos la siguiente sentencia SQL:
 ```sql
 CREATE USER 'username' IDENTIFIED BY 'averysecurepswd';
 ```
-` Cambiamos _username_ por nuestro usuario UNIX si queremos iniciar el cliente SQL sin proporcionar un nombre de usuario concreto.
-` Seria recomendable cambiar _averysecurepaswd_ por una contraseña segura.
+> Cambiamos _username_ por nuestro usuario UNIX si queremos iniciar el cliente SQL sin proporcionar un nombre de usuario concreto.
+> Seria recomendable cambiar _averysecurepaswd_ por una contraseña segura.
 
 ![Consola mostrando el shell de MariaDB, tras haber ejecutado 'mysql -p'](https://github.com/SoyIagoX009/Apuntes-SQL/raw/master/instalacion-mariadb/attachments/20.PNG?raw=true)
 **Ahora ya deberíamos poder acceder al servidor sin permisos de superusuario** (obviando el `sudo`), ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el shell de MariaDB.
 
-` Si no usamos el nombre de usuario UNIX como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
-` Podemos proporcionar directamente la contraseña de acceso a la base de datos haciendo `mysql -p averysecurepswd` pero, de esta manera, la contarseña se almacenaría en el historial de comandos, reduciendo la seguridad.
+> Si no usamos el nombre de usuario UNIX como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
+> Podemos proporcionar directamente la contraseña de acceso a la base de datos haciendo `mysql -p averysecurepswd` pero, de esta manera, la contarseña se almacenaría en el historial de comandos, reduciendo la seguridad.
 
 Ahora el servidor ya se encuentra listo para ser usado, recordar que **cualquier usuario que creemos de esta manera tiene permiso absoluto sobre todos la información del servidor** salvo que ejecutemos consultas SQL que le cambien los permisos.
