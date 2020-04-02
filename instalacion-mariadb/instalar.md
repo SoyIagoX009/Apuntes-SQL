@@ -2,7 +2,7 @@
 En este documento se muestran los pasos básicos para tener una instalación local funcional de MariaDB, utilizare en una distribución Ubuntu 18.04 LTS (bajo WSL), los pasos son replicables tanto en un equipo físico, maquina virtual o sistema WSL con Ubuntu 18.04 LTS.
 
 #### Links utiles
-👉 [Activar la virtualización por hardware](../APUNTES_conf.md#activar-la-virtualizaci%C3%B3n-por-hardware) para WSL y maquinas virtuales.
+👉 [Activar la virtualización por hardware](../APUNTES_conf.md#activar-la-virtualizaci%C3%B3n-por-hardware) para WSL y maquinas virtuales.  
 👉 [Instalar WSL y Ubuntu 18.04 LTS](../APUNTES_conf.md#activar-windows-subsystem-for-linux) en Windows 10 (documentado para la versión 1909).
 
 ## Preparando el Sistema
