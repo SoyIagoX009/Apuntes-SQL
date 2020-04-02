@@ -5,62 +5,69 @@ SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regula
 - Sintaxis 
    - Enteros
    - Cadenas de texto
-   - Colecciones de cadenas
+   - Colecciones
    - Comentarios
    - Operadores de comparación
       - Mayor que...
-	  - Menor que...
-	  - Igual que...
-	  - Distinto de...
-   - Operadores logicos
-      - XOR
-	  - AND
-	  - NOT
-	  - Uso combinado
+	   - Menor que...
+	   - Igual que...
+	   - Distinto de...
+   - Operadores lógicos
+      - OR
+	   - AND
+	   - NOT
+	   - Uso combinado
    - Comodines
-     - Estrictos
-	 - Permisivos
-	 - Uso combinado
+      - Estrictos
+	   - Permisivos
+	   - Uso combinado
+   - Patrones
    - Subconsultas
    - Fin de la consulta
-- Data Query Language
-   - SELECT y FROM
-       - Seleccionado varias columnas
-       - Renonbrando columnas
-   - WHERE
-   - SORT BY
+- DQL - *Data Query Language*
+   - SELECT
+     - FROM
+     - WHERE
+     - GROUP BY
+     - HAVING
+     - ORDER BY
+     - LIMIT
 
 
 ## Sintaxis
 ### Enteros
-Los numeros enteros se representan sin utilizar ningun caracter en especial, es importante recordar que no se permite la separación del numero.
+Los numeros enteros se representan sin utilizar ningun caracter en especial.
 
 ```sql
-SELECT name
+SELECT country
 FROM world
-WHERE population = 1000000; -- Correcto
--- WHERE population = 1 000 000 (Facilitaria la lectura, pero da error)
+WHERE population = 1000000;
 ```
 
 ### Cadenas de texto
-Para pasarle al gestor de base de datos una cadena de texto, es necesario, siempre, pasarle la información entre comillas simples:
+Para pasarle al gestor de base de datos una cadena de texto usamos la comilla simple ( `'cadena de texto'`) o las comillas dobles ( `"cadena de texto"`), dependiendo de la situación, **normalmente la comilla a usar es la simple**, pero en algunas situaciones PostgreSQL requiere que se use la comilla doble ya que de lo contrario se devuelve error en la consulta.
 
+***Situación por defecto, la comilla simple funciona:***
 ```sql
-SELECT name
+SELECT country
 FROM world
 WHERE name='Spain';
 ```
-En este ejemplo, usamos la cadena *Spain*, que la consulta solo nos devuelva a España de una lista de paises.
-
-### Colecciones
-Las colecciones son conjuntos de cadenas de texto independientes, su sintaxis es la siguiente:
+***Situación donde la comilla simple se devolveria como error:***
 
 ```sql
-SELECT name
-FROM world
-WHERE name IN ('Spain', 'France', 'Portugal');
+SELECT 'hola mundo';
 ```
-En este ejemplo, usamos la colección *(Spain, France, Portugal)* para que la consulta solo nos devuelva estos de una lista de paises.
+
+
+### Colecciones
+Las colecciones son conjuntos de cadenas de texto independientes, su sintaxis es ```('elemento1','elemento2', 'elemento3', ...)```.
+```sql
+SELECT country
+FROM world
+WHERE country IN ('Spain', 'France', 'Portugal');
+```
+En este ejemplo, usamos la colección *(Spain, France, Portugal)* para que la consulta solo nos devuelva estos de una lista de países.
 
 ### Comentarios
 Los comentarios son utiles para dejar escritas lineas que seran ignoradas por el sistema gestor.
@@ -85,30 +92,32 @@ Además, podemos usar los comentarios para hacer copia de seguridad de un codigo
 - Comentar a partir de cierta parte de la linea:
 
 ```sql
-SELECT algo; --(a partir aquí, la linea se ignora) FROM algunaparte
+SELECT algo --(a partir aquí, la linea se ignora)
+FROM algunaparte;
 ```
 
 **No contamos con la posibilidad de:**
 
-- Hacer, directamente, parrafos:
+- Hacer, directamente, párrafos:
 
 ```sql
 --
-Es imposible hacer funcionar los comentarios como el <!-- --> de HTML,
-almenos en mySQL y tampoco en ANSI SQL, este codigo dara error.
+Es imposible hacer comentarios al estilo del <!-- -->
+que encontramos en HTML, este código dará error.
 --
 SELECT algo
 FROM algunaparte;
 -- Esta seria
 -- La forma correcta
--- de hacer parrafos
+-- de hacer párrafos
+;
 ```
 
 - Hacer comentarios en medio de la linea:
 
 ```sql
-SELECT -- este codigo -- algo
-FROM -- no funcionara -- algunaparte
+SELECT -- este código -- algo
+FROM -- no funcionara -- algunaparte;
 ```
 
 ### Operadores de comparación
@@ -130,7 +139,7 @@ En SQL el operador de menor que es el simbolo de menor que (*<* ):
 ```sql
 SELECT name
 FROM world
-WHERE population  < 1000;
+WHERE population < 1000;
 ```
 
 El operador de mayor que compara el un valor al dado, y lo de vuelve si esta en el rango proporcionado. El ejemplo anterior devuelve todos los paises con una población inferior a 1000 habitantes.
@@ -212,7 +221,7 @@ El comodin "_" sirve para filtrar cadenas de texto en las que exista un caracter
 ```sql
 SELECT name
 FROM world
-WHERE name LIKE 'S____'
+WHERE name LIKE 'S____';
 ```
 Esta consulta devuelve todos los paises que se contengan una *S* al principio y da libertad a los siguientes cuatro caracteres, pero requiere que estos existan.
 
@@ -229,7 +238,7 @@ El comodin "%" filtra cadenas de texto en las que da igual que exista o no un ca
 ```sql
 SELECT name
 FROM world
-WHERE name LIKE 'F%'
+WHERE name LIKE 'F%';
 ```
 Esta consulta devuelve todos los paises que se contengan F de primer caracter, pero da libertad a la longitud de la cadena de texto, por lo tanto se listan todos los paises que tengan una F al principio de su nombre
 
@@ -240,12 +249,12 @@ Finland |
 France |
 
 ##### Uso combinado
-Los dos comodines se pueden usar a la vez sin ningun tipo de problema.
+Los dos comodines se pueden usar a la vez sin ningún tipo de problema.
 
 ```sql
 SELECT name
 FROM world
-WHERE name LIKE '_c_%'
+WHERE name LIKE '_c_%';
 ```
 Esta consulta devuelve todos los paises que se contengan una *p* de segundo caracter, requiere que exista un tercer caracter, y luego, da libertad a la longitud de la cadena.
 
@@ -254,8 +263,12 @@ name |
 Iceland |
 Ecuador |
 
+### Patrones
+Los patrones funcionan de forma similar a los comodines, pero nos permiten hacer una criba más concreta.
+
+
 ### Subconsultas
-En SQL el parentesis actua de la misma manera que lo haria en una operación matematica, la parte de la consulta declarada dentro del parentesis se realiza primero y permite, por ejemplo, hacer filtros con *SELECT* más complejos.
+En SQL es posible realizar consultas dentro de consultas, para ello se hace uso de los paréntesis `(` `)`, la finalidad es tener un mayor control sobre la información.
 
 ```sql
 SELECT name, population
@@ -264,9 +277,9 @@ WHERE population > (
              SELECT population 
              FROM world 
              WHERE name="India"
-)
+);
 ```
-La parte de la consulta que se encuentra dentro del parentesis en este ejemplo permite obtener la población de la India, y, luego, lista los paises del mundo con más población que la India.
+La parte de la consulta que se encuentra dentro del paréntesis, en este ejemplo, permite obtener la población de la India, y, luego, lista los paises del mundo con más población que la India, esto no seria posible sin hacer uso de la subconsulta.
 
 name | population
 -| -
@@ -275,7 +288,7 @@ China | 1365370000
 ### Fin de la consulta
 En SQL es necesario declarar donde acaba nuestra consulta, para ello se usa el punto y coma.
 
-> Aunque algunos gestores pueden ser permisivos y no necesitar el ; para realizar la consulta, es un buena practica hacer uso del punto y coma igualmente.
+> Aunque algunos sofwares como SQL pueden ser permisivos y no necesitar el `;` para realizar la consulta, es un buena practica hacer uso del punto y coma igualmente.
 
 ```sql
 SELECT name
@@ -283,58 +296,248 @@ FROM world;
 ```
 
 ## SQL - Data Query Language
-Las instrucciones DQL se utilizan para leer información contenida en la base de datos sobre la que estamos trabajando.
+Las instrucciones DQL se utilizan para devolver la información contenida en la base de datos sobre la que estamos trabajando.
 
-### SELECT y FROM
-`SELECT` y `FROM` **se utilizan juntos** en una sentencia SQL para devolver la información almacenada en una tabla.
-
-
-```sql
-SELECT name 
-FROM world;
-```
-
-Este sencillo codigo devuelve una tabla con todos los nombres de los paises existentes, controversias a parte, en la actualidad:
-
-name |
--|
-Algeria |
-Angola |
-Benin |
-***etc...***|
-
-
-##### Seleccionando varias columnas
-`SELECT` permite tambien seleccionar a la vez varias columnas, para hacerlo, basta para separar los nombres de las diferentes columnas con una coma (`,`).
+### SELECT
+`SELECT` se trata de la instrucción de la que depende todo SQL-DQL, usando `SELECT` junto a las clausulas documentadas a continuación podemos devolver la información que tenemos contenida en la base de datos.
 
 ```sql
-SELECT name, continent
-FROM world;
+SELECT 'hola mundo'
+;
 ```
-name | continent
--|-
-Algeria | Africa
-Angola | Africa
-Benin | Africa
-***etc...***|
 
-##### Renonbrando columnas
-La instrucción `AS` se utiliza tras el nombre de una tabla que queremos listar con un `SELECT` y nos pemite darle un alias a la hora de recuperar la información.
+Si no usamos ninguna clausula adicional, `SELECT` no puede hacer mucho más que mostrar la misma información que le pasamos:
 
 ```sql
-SELECT name AS "Paises"
-FROM world
+SELECT * | <[<tabla>.]columna1> [AS <string>], <[<tabla>.]columna2> [AS <string>], <[<tabla>.]columna3> [AS <string>], ...
+   FROM <tabla1>, <tabla2>, <tabla3>, ...
+   WHERE (condición)
+   GROUP BY <[<tabla>.]columna>
+   HAVING (condicion)
+   ORDER BY <[<tabla>.]columna> [(ASC) | DESC]
+   LIMIT <integer>
+   OFFSET <integer>
+;
 ```
-En lugar de aparecer *name* como nombre de la columna, ahora aparecera *Paises*.
 
-Paises |
--|
-Algeria |
-Angola |
-Benin |
-***etc...***|
-
-### WHERE
-La instrucción `WHERE` se utiliza para filtrar los resultados devueltos tas un` SELECT <columna> FROM <tabla>`, de esta manera se nos devuelve la información que necesitamos segun los criterios que escribamos tras el `WHERE`, en lugar de toda la información de la tabla.
+?column?  |
+----------| 
+hola mundo|
 
 
+...o resolver operaciones matemáticas:
+
+```sql
+SELECT 9*9;
+```
+
+?column?|
+--------| 
+81      |
+
+#### FROM
+`FROM` es una clausula que nos permite especificar las columnas de las que `SELECT` tiene que leer información.
+
+```sql
+SELECT * | <[<tabla>.]columna1> [AS <string>], <[<tabla>.]columna2> [AS <string>], <[<tabla>.]columna3> [AS <string>], ...
+FROM <tabla1>, <tabla2>, <tabla3>, ...
+;
+```
+Como mínimo, tendremos que especificar una columna y una tabla para que la consulta funcione.
+
+```sql
+SELECT tabla
+FROM columna;
+```
+
+Para ayudarnos a entender nuestro propio codigo, y para facilitar su lectura a terceros, también podemos especificar ya en el propio ```SELECT``` el nombre de la tabla a la que estamos solicitando la información de cada columna.
+
+```sql
+SELECT tabla.columna
+FROM tabla;
+```
+
+> En esta situación, de por si, se hace obvio que queremos la *columna* de la *tabla*, ya que solo estamos consultando dicha tabla en el ```FROM```, es en consultas más complejas donde se ve la utilidad de esta función.
+
+Podemos además cambiar el nombre de las columnas en el resultado de la consulta usando la clausula ```AS``` seguida del valor de cadena (*string*), que queramos.
+
+```sql
+SELECT tabla.columna AS "Un nombre personalizado"
+FROM tabla;
+```
+
+>
+> **Ejemplo**
+> ***Listando todos los paises del mundo***.
+>
+> *Podemos usar `FROM` para que `SELECT` devuelva la lista de todos los paises del mundo*.
+>
+> ```sql
+> SELECT world.country AS "Países"
+> FROM world;
+> ```
+> Países     | 
+> -----------|
+> Afganistan |
+> Albania    |
+> Algeria    |
+>
+
+También tenemos la posibilidad de devolver todos los elementos de la tabla sin tener conocimiento previo de ninguno de ellos, esto es util, principalmente, para saber que es lo que tenemos en la tabla y poder hacer un codigo más complejo, si en alguna situación hacemos uso de `SELECT *` y luego se implementa en la base de datos una nueva columna, esta comenzaría a aparecer, si hacemos uso de un SELECT `SELECT` con columnas concretas eso no ocurriría.
+
+```sql
+SELECT *
+FROM tabla;
+```
+>
+> **Ejemplo**
+> ***Mostrando toda la tabla world***.
+>
+> *Usaremos `SELECT *` para listar todas las columnas y contenido de la tabla mundo*.
+>
+> ```sql
+> SELECT *
+> FROM world
+> ```
+> country    | capital | continent | area     | population  | gdp
+> -----------|---------|-----------|----------|-------------|-------
+> Afganistan | Kabul   | Asia      | 31056997 | 647500      | 21740
+> Albania    | Tirana  | Europe    | 3581655  | 28748       | 16117
+> Algeria    | Argel   | Africa    | 32930091 | 2381740     | 197581
+> ...        |
+>
+
+#### WHERE
+
+La clausula `WHERE` nos permite cribar la información que lee `SELECT` para que la consulta solo devuelva una serie de elementos que sean acordes al criterio establecido; para esto podemos apoyarnos en toda la sintaxis de SQL (tratada con anterioridad en este documento).
+
+```sql
+WHERE (condicion)
+```
+>
+> **Ejemplo**
+> ***Listando los paises que coincidan con Spain, Portugal y France***.
+>
+> *Podemos usar `GROUP BY` para mostrar una lista de los continentes junto al numero de paises que estos contienen*.
+>
+> ```sql
+> SELECT world.country AS "Países"
+> FROM world
+> WHERE name IN ('España', 'Portugal', 'Francia');
+> ```
+> Países     | 
+> -----------|
+> España     |
+> Francia    |
+> Portugal   |
+>
+
+#### GROUP BY
+
+Con `GROUP BY` podemos agrupar todas las tuplas que se nos devuelve en la consulta en referencia a una determinada columna, que, por pura lógica, sabemos que tiene el mismo valor en varias tuplas.
+
+```sql
+GROUP BY <[<tabla>.]columna>
+```
+
+>
+> **Ejemplo**
+> ***Listando cuantos paises hay por continente***.
+>
+> *Podemos usar `GROUP BY` para mostrar una lista de los continentes junto al numero de paises que estos contienen*.
+>
+> ```sql
+> SELECT COUNT(world.country) AS "Nº Países", world.continent AS "Continente"
+> FROM world
+> GROUP BY world.continent;
+> ```
+> Nº Paises | Continente
+> ----------|------------
+> 55        | Africa
+> 54        | Asia
+> 45        | America
+> 43        | Europe
+>
+
+#### HAVING
+`HAVING` funciona de forma similar a `WHERE`, pero, mientras que **`WHERE` actuá individualmente sobre cada tupla, `HAVING` actuá sobre grupos de tuplas**, aplicando condiciones sobre estos grupos, usando toda la sintaxis de SQL.
+
+```sql
+HAVING (condicion)
+```
+>
+> **Ejemplo**
+> ***Listando los continentes con más de 40 paises***
+> 
+> *Podemos usar `GROUP BY` junto a un `HAVING` para sacar una lista de todos los continentes con más de 40 paises (eliminando así de la lista a Oceania).*
+>
+> ```sql
+> SELECT COUNT(world.country) AS "Nº Países", world.continent AS "Continente"
+> FROM world
+> GROUP BY world.continent
+> HAVING COUNT(world.continent) > 40;
+> ```
+> Nº Paises | Continente
+> ----------|------------
+> 55        | Africa
+> 54        | Asia
+> 45        | America
+> 43        | Europe
+>
+
+#### ORDER BY
+
+Con `ORDER BY` podemos ordenar todos los elementos devueltos por la consulta en base a un criterio de ascendente (por defecto) o descendente.
+
+```sql
+ORDER BY <[<tabla>.]columna> [(ASC) | DESC]
+```
+>
+> **Ejemplo**
+> ***Listando los paises que coincidan con Spain, Portugal y France, en orden alfabético inverso***.
+>
+> *Podemos usar `ORDER BY <columna> DESC` para mostrar los resultados en orden alfabético inverso*.
+>
+> ```sql
+> SELECT world.country AS "Países"
+> FROM world
+> WHERE world.country IN ('Spain', 'Portugal', 'France')
+> ORDER BY world.country DESC;
+> ```
+> Países     | 
+> -----------|
+> Spain      |
+> Portugal   |
+> France     |
+>
+
+#### LIMIT y OFFSET
+
+Usando `LIMIT` podemos controlar cuantas tuplas se devuelven como resultado de una consulta.
+
+`OFFSET` nos permitirá saltarnos una cantidad de elementos de la consulta, empezando a contar desde lo que debería ser la primera tupla.
+
+Tanto `OFFSET` como `LIMIT` tienen la misma sintaxis, pueden usarse independientemente o en conjunto.
+
+```sql
+LIMIT <integer>
+OFFSET <integer>
+```
+> **Ejemplo**
+> ***Listando cinco paises en orden alfabético inverso, saltándose los cinco primeros.***
+> 
+> *Podemos usar `GROUP BY` junto a un `HAVING` para sacar una lista de todos los continentes con más de 40 paises (eliminando así de la lista a Oceania).*
+>```sql
+>SELECT world.country AS "Países"
+>FROM world
+>ORDER BY world.country DESC
+>LIMIT 5
+>OFFSET 5;
+> ```
+> Países         | 
+> ---------------|
+> Vanuatu        |
+> Uzbekistan     |
+> Uruguay        |
+> United States  |
+> United Kingdom |

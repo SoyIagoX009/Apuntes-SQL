@@ -213,7 +213,6 @@ INSERT INTO world (country, continent, area, population, gdp, capital) VALUES
 ('Vanuatu', 'Oceania', 208869, 12200, 605.7201, 'Port Vila'),
 ('Venezuela', 'America', 25730435, 912050, 123506.088, 'Caracas'),
 ('Vietnam', 'Asia', 84402966, 329560, 211007.415, 'Hanói'),
-('Wallis and Futuna', 'Oceania', 16025, 274, 59.2925, 'Mata-Utu'),
 ('Yemen', 'Asia', 21456188, 527970, 17164.9504, 'Saná'),
 ('Zambia', 'Africa', 11502010, 752614, 9201.608, 'Lusaka'),
 ('Zimbabwe', 'Africa', 12236805, 390580, 23249.9295, 'Harare')
