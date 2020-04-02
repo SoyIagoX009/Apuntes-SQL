@@ -35,31 +35,31 @@ Una vez la instalación finalice, si es necesario, reiniciamos, luego instalamos
 
 ### Instalar el cliente PostgreSQL
 Abrimos Windows Terminal y una pestaña de Ubuntu o en su defecto la consola de WSL (más fea 👨‍💻), seguimos los pasos para configurar un usuario UNIX si no lo hemos hecho ya. 
-![Windows Terminal en Linux mostrando sudo apt-get update](./README_imgs/2_0.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get update](./README_imgs/2_0.PNG?raw=true)
 Ejecutamos ```sudo apt-get update``` para actualizar la lista de repositorios.
 
-![Windows Terminal en Linux mostrando sudo apt-get upgrade](./README_imgs/2_1.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get upgrade](./README_imgs/2_1.PNG?raw=true)
 Luego ```sudo apt-get upgrade``` para actualizar los paquetes del sistema.
 
-![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_2.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_2.PNG?raw=true)
 Ya con el sistema actualizado, lanzamos ```sudo apt-get install postgresql``` para instalar el servidor PostgreSQL.
 
 ### Inicializar el servidor PostgreSQL
-![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_3.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_3.PNG?raw=true)
 En el Terminal ejecutamos `sudo service postgresql start`, si se nos devuelve un mensaje como la imagen el servidor ya estará listo para operar.
 
 > En WSL, es posible que nos salte una alerta del Firewall de Windows en el PostgreSQL solicita permiso de acceso a red, para evitar cualquier fallo, aceptamos conceder acceso.
 
 Ahora iniciaremos sesión un momento con el usuario `postgres`, para ello hacemos `sudo -u postgres -i`.
 
-![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_5.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_5.PNG?raw=true)
 Ejecutamos el comando `createuser <neustro-usuario-unix>`.
 
-![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_6.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_6.PNG?raw=true)
 Abrimos el cliente PostgreSQL, `psql` y ejecutamos la consulta ```CREATE DATABASE <nuestro-usuario-unix>;```, ya hemos acabado la inicialización; salimos del shell psql escribiendo `\q` y pulsando `ENTER`, volvemos a nuestro usuario UNIX usando `su <usuario-unix>`.
 
 ### Iniciar el servidor PostgreSQL
-![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_7.png?raw=true)
+![Windows Terminal en Linux mostrando sudo apt-get install postgresql](./README_imgs/2_7.PNG?raw=true)
 
 Abrimos el cliente PostgreSQL usando el comando `psql`, ya deberiamos estar dentro de nuestra base de datos.
 
