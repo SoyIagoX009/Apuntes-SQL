@@ -18,5 +18,5 @@ Apuntes de SQL para el curso 2019/2020 -- 🦠 Coronavirus Limited Edition.
 
 ___
 
-Iago Xoan Casal Neira -- ASI1 -- Nº6
+Iago Xoan Casal Neira -- ASI1 -- Nº6  
 IES Fernando Wirtz Suarez -- Curso 2019/2020.
