@@ -1,13 +1,14 @@
 # Apuntes de Server Query Language
-SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regulado por la ANSI, la ultima revisión data de 2016, aunque cada sistema gestor hace la implementación de diferentes maneras. Estos apuntes estan preparados para funcionar con PostgresSQL.
+SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regulado por la ANSI, la ultima revisión data de 2016, aunque cada sistema gestor hace la implementación de diferentes maneras. Estos apuntes están preparados para funcionar con PostgresSQL.
 
 ## Indice
 - Sintaxis 
    - Enteros
    - Cadenas de texto
-   - Colecciones
+   - Colecciones (IN)
    - Comentarios
    - Operadores
+      - Operadores matemáticos
       - Operadores lógicos
          - OR
 	      - AND
@@ -21,7 +22,7 @@ SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regula
    - Subconsultas
    - Condiciones (CONSTRAINT)
    - Fin de la consulta
-- DQL - *Data Query Language*
+- DML - *Data Manipulation Language*
    - SELECT
      - FROM
      - WHERE
@@ -29,11 +30,36 @@ SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regula
      - HAVING
      - ORDER BY
      - LIMIT
+   - INSERT
+   - UPDATE
+   - DELETE FROM
+   - TRUNCATE
+- DDL - *Data Declaration Language*
+   - DATABASE
+      - CREATE
+      - ALTER
+      - DROP
+   - SCHEMA
+      - CREATE
+      - ALTER
+      - DROP
+   - USER
+      - CREATE
+      - ALTER
+      - DROP
+   - DOMAIN
+      - CREATE
+      - ALTER
+      - DROP
+   - TABLE
+      - CREATE
+      - ALTER
+      - DROP
 
 
 ## Sintaxis
 ### Enteros
-Los numeros enteros se representan sin utilizar ningun caracter en especial.
+Los números enteros se representan sin utilizar ningún carácter en especial.
 
 ```sql
 SELECT country
@@ -44,7 +70,7 @@ WHERE population = 1000000;
 ---
 
 ### Cadenas de texto
-Para pasarle al gestor de base de datos una cadena de texto usamos la comilla simple ( `'cadena de texto'`) o las comillas dobles ( `"cadena de texto"`), dependiendo de la situación, **normalmente la comilla a usar es la simple**, pero en algunas situaciones PostgreSQL requiere que se use la comilla doble ya que de lo contrario se devuelve error en la consulta.
+Para pasar al gestor de base de datos una cadena de texto usamos la comillas simple ( `'cadena de texto'`) o las comillas dobles ( `"cadena de texto"`), dependiendo de la situación, **normalmente la comilla a usar es la simple**, pero en algunas situaciones PostgreSQL requiere que se use la comillas doble ya que de lo contrario se devuelve error en la consulta.
 
 ***Situación por defecto, la comilla simple funciona:***
 ```sql
@@ -81,7 +107,7 @@ Para escribir los comentarios, se utilizan dos guiones:
 SELECT algo --(a partir aquí, la linea se ignora) FROM algunaparte
 FROM algunaotraparte;
 ```
-Además, podemos usar los comentarios para hacer copia de seguridad de un codigo que sabemos que funciona, pero que queremos perfeccionar o desactivar por algun determinado motivo. Y claro, tambien puede usarse para explicar como funciona el codigo.
+Además, podemos usar los comentarios para hacer copia de seguridad de un código que sabemos que funciona, pero que queremos perfeccionar o desactivar por algún determinado motivo. Y claro, también puede usarse para explicar como funciona el código.
 
 **En SQL, contamos solo con la posibilidad de:**
 
@@ -127,8 +153,8 @@ FROM -- no funcionara -- algunaparte;
 ### Operadores
 SQL soporta el uso de operadores lógicos y de operadores matemáticos para tratar datos.
 
-#### Operadores matematicos
-Estos son los operadores matematicos soportados por SQL:
+#### Operadores matemáticos
+Estos son los operadores matemáticos soportados por SQL:
 
  Operador | Uso
  ---------|------
@@ -142,33 +168,36 @@ Estos son los operadores matematicos soportados por SQL:
  /        | División
  ^        | Potencia
 
-#### Operadores logicos
-SQL dispone de los siguientes operadores logicos.
+#### Operadores lógicos
+SQL soporta los siguiente operadores lógicos:
 
 ##### OR
-*OR* devuelve la información cuando **alguno** de los elementos dados al *OR* es True.
+```OR``` devuelve la información cuando **alguno** de los elementos dados al *OR* es True.
 
-Podemos usar OR para devolver todos los paises de Africa y, además, añadir a España.
+Podemos usar ```OR``` para devolver todos los países de Africa y, además, añadir a España.
 
 ```sql
 SELECT country
 FROM world
 WHERE continent='Africa' OR country='Spain';
 ```
-##### AND
-*AND* devuelve la información cuando **todos** de los elementos dados al *AND* son True.
 
-Podemos devolver asi todos los paises de Europa cuyo nombre es España.
+##### AND
+```AND``` devuelve la información cuando **todos** de los elementos dados al ```AND``` son ```True```.
+
+
+Podemos devolver asi todos los países de Europa cuyo nombre es España.
 
 ```sql
 SELECT country
 FROM world
 WHERE continent='Europe' AND country='Spain';
 ```
-##### NOT
-*NOT* devulve la información cuando el/los elementos dados al *NOT* son False.
 
-Podemos usar *NOT* para devolver todos los paises cuyo nombre no sea España.
+##### NOT
+```NOT``` devuelve la información cuando el/los elementos dados al ```NOT``` son ```False```.
+
+Podemos usar ```NOT``` para devolver todos los países cuyo nombre no sea España.
 
 ```sql
 SELECT country
@@ -177,9 +206,9 @@ WHERE NOT country='Spain';
 ```
 
 ##### OR, AND y NOT
-Podemos usar todos los operadores logicos a la vez, y si lo quisiesemos, construir otros operadores logicos como XOR, NAND, etc...
+Podemos usar todos los operadores lógicos a la vez, y si lo quisiésemos, construir otros operadores lógicos como ```XOR```, ```NAND```, etc...
 
-En este ejemplo se listan todos los paises de Africa y Europa que no sean Francia.
+*En este ejemplo se listan todos los países de Africa y Europa que no sean Francia.*
 
 ```sql
 SELECT country
@@ -190,17 +219,17 @@ WHERE continent='Africa' OR continent='Europe' AND NOT country='France';
 ---
 
 #### Patrones (LIKE)
-SQL cuenta con la posibilidad de comprar valores con patrones, para ello se utiliza la instrucción ```LIKE```
+SQL cuenta con la posibilidad de comprar valores con patrones, para ello se utiliza la instrucción ```LIKE```.
 
 ##### Patron escricto
-El patron "_" sirve para filtrar cadenas de texto en las que exista un caracter en la misma  posición en la que se encuentra el patron y que tengan la misma longitud, es un patron escrito.
+El patron ```_``` sirve para filtrar cadenas de texto en las que exista un caracter en la misma  posición en la que se encuentra el patron y que tengan la misma longitud, es un patron escrito.
 
 ```sql
 SELECT country
 FROM world
 WHERE country LIKE 'S____';
 ```
-Esta consulta devuelve todos los paises que se contengan una *S* al principio y da libertad a los siguientes cuatro caracteres, pero requiere que estos existan.
+Esta consulta devuelve todos los países que se contengan una *S* al principio y da libertad a los siguientes cuatro caracteres, pero requiere que estos existan.
 
 country |
 -|
@@ -210,14 +239,14 @@ Sudan |
 Syria |
 
 ##### Patron permisivo
-El comodín "%" filtra cadenas de texto en las que da igual que exista o no un caracter o caracteres en la misma posición, es un comodín no estricto.
+El comodín ```%``` filtra cadenas de texto en las que da igual que exista o no un carácter o caracteres en la misma posición, es un comodín no estricto.
 
 ```sql
 SELECT country
 FROM world
 WHERE country LIKE 'F%';
 ```
-Esta consulta devuelve todos los paises que se contengan F de primer caracter, pero da libertad a la longitud de la cadena de texto, por lo tanto se listan todos los paises que tengan una F al principio de su nombre
+Esta consulta devuelve todos los países que se contengan F de primer carácter, pero da libertad a la longitud de la cadena de texto, por lo tanto se listan todos los países que tengan una F al principio de su nombre
 
 country |
 -|
@@ -233,7 +262,7 @@ SELECT country
 FROM world
 WHERE country LIKE '_c_%';
 ```
-Esta consulta devuelve todos los paises que se contengan una *p* de segundo caracter, requiere que exista un tercer caracter, y luego, da libertad a la longitud de la cadena.
+Esta consulta devuelve todos los países que se contengan una *p* de segundo carácter, requiere que exista un tercer carácter, y luego, da libertad a la longitud de la cadena.
 
 country |
 -|
@@ -263,7 +292,7 @@ Expresión | Significado
 ---
 
 ### Subconsultas
-En SQL es posible realizar consultas dentro de consultas, para ello se hace uso de los paréntesis `(` `)`, la finalidad es tener un mayor control sobre la información.
+En SQL en determinadas situaciones es posible o necesario realizar consultas dentro de consultas, para ello se hace uso de los paréntesis `(` `)`, la finalidad es tener un mayor control sobre la información.
 
 ```sql
 SELECT country, population
@@ -274,7 +303,7 @@ WHERE population > (
              WHERE country="India"
 );
 ```
-La parte de la consulta que se encuentra dentro del paréntesis, en este ejemplo, permite obtener la población de la India, y, luego, lista los paises del mundo con más población que la India, esto no seria posible sin hacer uso de la subconsulta.
+La parte de la consulta que se encuentra dentro del paréntesis, en este ejemplo, permite obtener la población de la India, y, luego, lista los países del mundo con más población que la India, esto no seria posible sin hacer uso de la subconsulta.
 
 country | population
 -| -
@@ -348,11 +377,11 @@ FROM world;
 
 ---
 
-## SQL - Data Query Language
-Las instrucciones DQL se utilizan para devolver la información contenida en la base de datos sobre la que estamos trabajando.
+## SQL - Data Manipulation Language
+Las instrucciones DML se utilizan para devolver, añadir, actualizar o modificar y/o eliminar la información contenida en la base de datos sobre la que estamos trabajando.
 
 ### SELECT
-`SELECT` se trata de la instrucción de la que depende todo SQL-DQL, usando `SELECT` junto a las clausulas documentadas a continuación podemos devolver la información que tenemos contenida en la base de datos.
+`SELECT` junto a las clausulas documentadas a continuación podemos devolver la información que tenemos contenida en la base de datos.
 
 ```sql
 SELECT 'hola mundo'
@@ -428,6 +457,9 @@ FROM tabla;
 > Albania    |
 > Algeria    |
 >
+> ```bash
+> psql -f ./ejemplos/from.sql
+> ```
 
 También tenemos la posibilidad de devolver todos los elementos de la tabla sin tener conocimiento previo de ninguno de ellos, esto es util, principalmente, para saber que es lo que tenemos en la tabla y poder hacer un codigo más complejo, si en alguna situación hacemos uso de `SELECT *` y luego se implementa en la base de datos una nueva columna, esta comenzaría a aparecer, si hacemos uso de un SELECT `SELECT` con columnas concretas eso no ocurriría.
 
@@ -452,7 +484,9 @@ FROM tabla;
 > Algeria    | Argel   | Africa    | 32930091 | 2381740     | 197581
 > ...        |
 >
-
+> ```bash
+> psql -f ./ejemplos/from2.sql
+> ```
 #### WHERE
 
 La clausula `WHERE` nos permite cribar la información que lee `SELECT` para que la consulta solo devuelva una serie de elementos que sean acordes al criterio establecido; para esto podemos apoyarnos en toda la sintaxis de SQL (tratada con anterioridad en este documento).
@@ -477,6 +511,9 @@ WHERE (condicion)
 > Francia    |
 > Portugal   |
 >
+> ```bash
+> psql -f ./ejemplos/where.sql
+> ```
 
 #### GROUP BY
 
@@ -504,6 +541,9 @@ GROUP BY <[<tabla>.]columna>
 > 45        | America
 > 43        | Europe
 >
+> ```bash
+> psql -f ./ejemplos/groupby.sql
+> ```
 
 #### HAVING
 `HAVING` funciona de forma similar a `WHERE`, pero, mientras que **`WHERE` actuá individualmente sobre cada tupla, `HAVING` actuá sobre grupos de tuplas**, aplicando condiciones sobre estos grupos, usando toda la sintaxis de SQL.
@@ -530,6 +570,9 @@ HAVING (condicion)
 > 45        | America
 > 43        | Europe
 >
+> ```bash
+> psql -f ./ejemplos/having.sql
+> ```
 
 #### ORDER BY
 
@@ -556,6 +599,9 @@ ORDER BY <[<tabla>.]columna> [(ASC) | DESC]
 > Portugal   |
 > France     |
 >
+> ```bash
+> psql -f ./ejemplos/orderby.sql
+> ```
 
 #### LIMIT y OFFSET
 
@@ -573,12 +619,12 @@ OFFSET <integer>
 > ***Listando cinco paises en orden alfabético inverso, saltándose los cinco primeros.***
 > 
 > *Podemos usar `GROUP BY` junto a un `HAVING` para sacar una lista de todos los continentes con más de 40 paises (eliminando así de la lista a Oceania).*
->```sql
->SELECT world.country AS "Países"
->FROM world
->ORDER BY world.country DESC
->LIMIT 5
->OFFSET 5;
+> ```sql
+> SELECT world.country AS "Países"
+> FROM world
+> ORDER BY world.country DESC
+> LIMIT 5
+> OFFSET 5;
 > ```
 > Países         | 
 > ---------------|
@@ -587,6 +633,109 @@ OFFSET <integer>
 > Uruguay        |
 > United States  |
 > United Kingdom |
+>
+> ```bash
+> psql -f ./ejemplos/limitandoffset.sql
+> ```
+
+### INSERT
+Con ```INSERT``` podemos añadir información a una tabla de base de datos, esta información debe ser acorde a los criterios de validación establecidos en la configuración de la tabla.
+
+```sql
+INSERT INTO world (columna1, columna2, ...) VALUES
+ (valor1c1, valor1c2,...,
+  valor2c1, valor2c2,...
+ );
+```
+> Podemos añadir tantas futuras tuplas tras ```VALUES``` como queramos.
+
+> En PostgreSQL declarar las columnas es opcional si vamos añadir las nuevas tuplas siguiendo la estructura por defecto de la tabla, pero es buena practica hacer la declaración de columnas igualmente.
+
+> **Ejemplo**
+> *Añadiendo países a nuestra base de datos*.
+>
+> ```sql
+> INSERT INTO world (country, continent, area, population, gdp, capital) VALUES
+> ('Oceania','Oceania','63000000','10000000','11281191','London'),
+> ('Eurasia','Asia','22000000','5120000','9128119','Moscow'),
+> ('Eastasia','Asia','14000000','5510000','8158149','Tokyo');
+> ```
+> ```sql
+> INSERT 0 3
+> ```
+> ```bash
+> psql -f ./ejemplos/insertinto.sql
+> ```
+
+
+### UPDATE
+Usado ```UPDATE``` podemos cambiar la información contenida en las tuplas de las bases de datos. La información actualizada deberá seguir cumpliendo los criterios de validación previamente establecidos.
+
+```sql
+UPDATE <nombre-tabla>
+SET <expresion>
+WHERE <condicion>
+[RETURNING <columna1, columna2,...>];
+```
+> **Ejemplo**
+> *Cambiando la capital de un país cuyo nombre coincida con su continente a New York*.
+>
+> ```sql
+> UPDATE world
+> SET capital='New York'
+> WHERE country=continent
+> RETURNING country, capital;
+> ```
+>
+> country | capital
+> --------|----------
+> Oceania | New York
+>
+> ```sql
+> INSERT 1
+> ```
+> ```bash
+> psql -f ./ejemplos/update.sql
+> ```
+
+
+### DELETE FROM
+Mediante ```DELETE FROM``` eliminamos tuplas contenidas en una tabla de la base de datos.
+
+```sql
+DELETE FROM <nombre-tabla>
+WHERE <condición>
+[RETURNING <columna1, columna2,...>];
+```
+
+> Si lo que buscamos es dejar la tabla sin ningún tipo de contenido, los desarrolladores de Postgres recomiendan usar ```TRUNCATE``` en lugar de ```DELETE FROM```.
+
+> **Ejemplo**
+> *Eliminando los paises con un nombre similar al continente asiático*.
+>
+> ```sql
+> DELETE FROM world
+> WHERE country LIKE '%asia%'
+> RETURNING country, capital;
+> ```
+> country  | capital
+> ---------|---------
+> Eurasia  | Moscow
+> Eastasia | Tokyo
+>
+> ```sql
+> DELETE 2
+> ```
+> ```bash
+> psql -f ./ejemplos/deletefrom.sql
+> ```
+
+### TRUNCATE
+```TRUNCATE``` es una instrucción similar a ```DELETE FROM```, pero su finalidad es diferente, en lugar de borrar tuplas especificas que cumplán las condiciones de borrado, borra todas las tuplas de una tabla.
+
+```sql
+TRUNCATE <nombre-tabla> [CASCADE | RESTRICT];
+```
 
 ## SQL - Data Definition Language
 Las instrucciones DDL tienen la finalidad de definir las estructuras que se utilizaran en la base de datos.
@@ -674,7 +823,7 @@ DROP SCHEMA <nombre-esquema> [CASCADE | RESTRICT];
 Este parámetro permite eliminar el esquema, junto a todos los contenidos referidos fuera del esquema.
 
 ###### RESTRICT
-Este parámetro no permite eliminar el esquema de haber contenidos referenciados, es el parámetro por defecto.
+Este parámetro no permite eliminar el esquema de haber contenidos referenciados, **es el parámetro por defecto**.
 
 ---
 
@@ -715,41 +864,49 @@ Con ```CREATE DOMAIN``` creamos un nuevo dominio.
 
 ```sql
 CREATE DOMAIN <domain-country> <tipo-de-datos>
-[(CONSTRAINT <nombre-constraint>)
-<CONSTRAINT>];
+ [(CONSTRAINT <nombre-condición>)
+ <condición>];
 ```
 Dentro de los dominios no se pueden utilizar los ```CONSTRAINT``` de tipo ```UNIQUE```, ```PRIMARY KEY``` ni ```EXCLUDE```.
 
 Nombrar el ```CONSTRAINT``` es opcional, si no lo hacemos, Postgres le dará un nombre por defecto, pero si luego necesitamos editar el ```CONSTRAINT``` no darle un nombre propio nos entorpecerá el trabajo.
 
 > **Ejemplo**
-> Tenemos una serie de tablas en las que se identifica a individuos usando su DNI/NIE y queremos un crear un dominio para este tipo de dato.
->
-> *Sabemos que un DNI se compone por ocho números y una letra, y que el NIE por una letra, siete números y otra letra.*
+> Queremos impedir que se introduzcan en nuestra base de datos de paises nombres no coherentes, crearemos un ```DOMAIN``` con un ```CONSTRAINT``` que obligue a los datos introducidos a ser letras, puntos, comas, guion y/o espacios.
 >
 > ```sql
-> CREATE DOMAIN id_mask CHAR(9) 
->  CONSTRAINT id_mask_check
+> CREATE DOMAIN valid_country VARCHAR(128) 
+>  CONSTRAINT valid_charset
 >   CHECK (
->	  VALUE SIMILAR TO '[0-9]{8}[A-Z]'	-- Formato DNI
->	  OR
->	  VALUE SIMILAR TO '[A-Z][0-9]{7}[A-Z]'	-- Formato NIE
-> );
+>	 VALUE SIMILAR TO '[A-Za-zÑñ .,-]{1,}'
+>   );
 > ```
->
+> ```sql
+> CREATE DOMAIN
+> ```
 
 #### ALTER
 Con ```ALTER DOMAIN``` podemos modificar la configuración dada a un dominio existente.
 
 ```sql
 ALTER DOMAIN <nombre-del-dominio>
-[RENAME <nuevo-nombre>
+ RENAME TO <nuevo-nombre>
  OWNER <nombre-de-usuario>
  SET SCHEMA <nombre-del-esquema>
  DROP CONSTRAINT <nombre-del-constraint>
  ADD (CONSTRAINT <nombre-del-constraint>) CONSTRAINT
-]
 ```
+
+> **Ejemplo**
+> Decidimos usar el ```DOMAIN``` `valid_country` también para las capitales de país, y queremos rectificar su nombre.
+>
+> ```sql
+> ALTER DOMAIN valid_country
+>  RENAME valid_name;
+> ```
+> ```sql
+> ALTER DOMAIN
+> ```
 
 ##### RENAME
 Con ```RENAME``` podemos cambiar el nombre que posee el dominio, el nuevo nombre no puede estar siendo usado por otro dominio ya existente.
@@ -769,7 +926,104 @@ Usando ```ADD``` podemos añadir un nuevo ```CONSTRAINT``` a un dominio ya exist
 Un ```TABLE``` es una estructura que se usa para almacenar la información de la base de datos.
 
 #### CREATE
+Usando ```CREATE TABLE``` añadimos una tabla a nuestra base de datos, en una tabla definimos columnas y sus criterios de integridad, más tarde, las tablas serán cubiertas con información usando instrucciones de SQL-DML.
 
-#### DROP
+```sql
+CREATE TABLE <nombre-tabla> {
+   <nombre-de-columna> [<tipo-de-datos> | <nombre-de-dominio>] (CONSTRAINT), ...
+}
+```
+**Como mínimo, es necesario definir una columna**.
+
+> **Ejemplo**
+> Creamos una nueva tabla que albergara una lista de paises, su capital, continente, PIB, población y superficie.
+>
+> ```sql
+> CREATE TABLE world(
+>	country valid_name PRIMARY KEY,
+>	capital valid_name UNIQUE NOT NULL,
+>	continent VARCHAR 
+>		CONSTRAINT valid_continents 
+>		CHECK (
+>			continent IN ('Africa', 'America', 'Asia', 'Europe', 'Oceania')
+>		),
+>	area BIGINT
+>		CONSTRAINT valid_area
+>		CHECK (
+>			area >= 0
+>		),
+>	population INTEGER
+>		CONSTRAINT valid_population
+>		CHECK (
+>			population >= 0
+>		),
+>	gdp INTEGER
+>		CONSTRAINT valid_gdp NOT NULL
+>);
+> ```
+> ```sql
+> CREATE TABLE
+> ```
+
+###### CONSTRAINT
+Opcionalmente podemos definir una o más ```CONSTRAINT```, incluso habiendo definido anteriormente condiciones en el dominio. En este caso, se pueden usar todos los tipos de ```CONSTRAINT```.
 
 #### ALTER
+Mediante ```ALTER TABLE``` podemos modificar una tabla previamente existente en la base de datos.
+
+```sql
+ALTER TABLE <nombre-tabla>
+ADD <nombre-columna> <tipo-de-datos>
+RENAME <nombre-columna> TO <nuevo-nombre-columna>
+DROP <nombre-columna> [RESTRICT | CASCADE]
+ALTER <nombre-columna> TYPE <tipo-de-datos>
+ADD CONSTRAINT <condición>
+DROP CONSTRAINT <nombre-condición> [RESTRICT | CASCADE]
+OWNER TO <nombre-usuario>
+RENAME CONSTRAINT <nombre-condición> TO <nuevo-nombre-condición>
+RENAME TO <nuevo-nombre-tabla>
+SET SCHEMA <nombre-esquema>
+```
+
+##### ADD
+```ADD```os permite añadir una nueva columna a la tabla referenciada.
+
+##### RENAME
+Utilizando ```RENAME``` podemos cambiar el nombre de una columna ya existente en la base de datos.
+
+##### DROP
+Con ```DROP``` podemos eliminar una columna existente en la tabla.
+
+##### ALTER
+Usando ```ALTER <nombre-columna> TYPE``` podemos cambiar el dominio o tipo de datos que se aplica a la columna.
+
+##### ADD CONSTRAINT
+Mediante ```ADD CONSTRAINT``` podemos añadir una nueva condición a una columna existente.
+
+##### DROP CONSTRAINT
+```ADD CONSTRAINT``` permite eliminar una condición existente sobre la columna referenciada.
+
+##### OWNER TO
+Con ```ONWER TO``` podemos cambiar que usuario tiene la propiedad de la tabla.
+
+##### RENAME CONSTRAINT
+Utilizando ```RENAME CONSTRAINT``` podemos cambiar el nombre de una condición existente en la tabla.
+
+##### RENAME TO
+```RENAME TO``` nos permite cambiar el nombre que tiene la tabla internamente en la base de datos.
+
+##### SET SCHEMA
+Mediante ```SET SCHEMA``` podemos cambiar el esquema al que pertenece la tabla.
+
+#### DROP
+Con ```DROP TABLE``` podemos eliminar una tabla de la base de datos.
+
+```sql
+DROP TABLE <nombre-tabla> [CASCADE | (RESTRICT)]
+```
+
+###### CASCADE
+Este parámetro permite eliminar el esquema, junto a todos los contenidos referidos en otras tablas.
+
+###### RESTRICT
+Este parámetro no permite eliminar el esquema de haber contenidos referenciados, **es el parámetro por defecto**.

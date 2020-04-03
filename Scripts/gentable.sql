@@ -2,12 +2,12 @@ CREATE TABLE world(
 	country VARCHAR PRIMARY KEY 
 		CONSTRAINT valid_country
 		CHECK (
-			country NOT SIMILAR TO '%(1|2|3|4|5|6|7|8|9|0)%'
+			country SIMILAR TO '[A-Za-zÑñ .,-]{1,}'
 		),
 	capital VARCHAR UNIQUE NOT NULL
 		CONSTRAINT valid_capital
 		CHECK (
-			capital NOT SIMILAR TO '%(1|2|3|4|5|6|7|8|9|0)%'
+			capital SIMILAR TO '[A-Za-zÑñ .,-]{1,}'
 		),
 	continent VARCHAR 
 		CONSTRAINT valid_continents 
