@@ -78,7 +78,7 @@ __Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuar
 
 > Podemos proporcionar directamente la contraseña de usuario en el servidor haciendo `mysql -p averysecurepswd` pero, de esta manera, __la contraseña se almacenaría en el historial de comandos__, reduciendo la seguridad.
 
-Ahora el servidor ya se encuentra listo para ser usado, recordar que **cualquier usuario que creemos de esta manera tiene permiso absoluto sobre toda la información contenida en el servidor** salvo que ejecutemos consultas SQL que le cambien los permisos.
+Tras esto, el servidor ya se encuentra listo para ser usado, recordar que **cualquier usuario que creemos de esta manera tiene permiso absoluto sobre toda la información contenida en el servidor** salvo que ejecutemos consultas SQL que le cambien los permisos.
 
 > Si en futuro intentamos conectanos y se nos devuelve el error:
 > ```
