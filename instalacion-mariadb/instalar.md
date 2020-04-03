@@ -62,9 +62,9 @@ Ahora, ejecutamos la siguiente sentencia SQL:
 ```sql
 CREATE USER 'username' IDENTIFIED BY 'averysecurepswd';
 ```
-> Cambiamos _username_ por nuestro nombre de usuario en Ubuntu si queremos iniciar el cliente SQL sin proporcionar un nombre de usuario concreto.
+- Cambiamos _username_ por nuestro nombre de usuario en Ubuntu, si queremos iniciar el cliente SQL sin proporcionar un nombre de usuario concreto.
 
-> Seria recomendable cambiar _averysecurepaswd_ por una contraseña segura.
+- Seria recomendable cambiar _averysecurepaswd_ por una contraseña segura.
 
 ![Consola mostrando el shell de MariaDB, tras haber ejecutado 'mysql -p'](./attachments/20.PNG?raw=true)
 
@@ -72,7 +72,7 @@ __Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuar
 
 1. Escribimos `\q` y pulsamos `ENTER` para salir del *shell* de MariaDB.
 2. Ejecutamos `su <nuestro-usuario>` para volver a nuestra cuenta habitual en Ubuntu.
-3. Ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el *shell* de MariaDB.
+3. Ejecutamos `mysql -p`, y, tras proporcionar la contraseña, estaríamos en el *shell* de MariaDB.
 
 > Si no usamos el nombre de usuario de Ubuntu como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
 
