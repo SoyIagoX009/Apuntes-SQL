@@ -1,5 +1,5 @@
 # Apuntes de Server Query Language
-SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regulado por la ANSI, la ultima revisión data de 2016, aunque cada sistema gestor hace la implementación de diferentes maneras. Estos apuntes están preparados para funcionar con PostgresSQL.
+SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regulado por la ANSI, la ultima revisión data de 2016, aunque cada sistema gestor hace la implementación de diferentes maneras. Estos apuntes están preparados para funcionar con Postgres.
 
 ## Indice
 - [Sintaxis](#sintaxis)
@@ -862,6 +862,9 @@ Nombrar el ```CONSTRAINT``` es opcional, si no lo hacemos, Postgres le dará un 
 > ```sql
 > CREATE DOMAIN
 > ```
+> ```bash
+> psql -f ./ejemplos/createdomain.sql
+> ```
 
 #### ALTER
 Con ```ALTER DOMAIN``` podemos modificar la configuración dada a un dominio existente.
@@ -884,6 +887,9 @@ ALTER DOMAIN <nombre-del-dominio>
 > ```
 > ```sql
 > ALTER DOMAIN
+> ```
+> ```bash
+> psql -f ./ejemplos/alterdomain.sql
 > ```
 
 ##### RENAME
@@ -941,6 +947,9 @@ CREATE TABLE <nombre-tabla> {
 > ```
 > ```sql
 > CREATE TABLE
+> ```
+> ```bash
+> psql -f ./ejemplos/createtable.sql
 > ```
 
 ###### CONSTRAINT
