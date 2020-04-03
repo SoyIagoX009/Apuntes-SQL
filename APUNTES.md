@@ -2,59 +2,37 @@
 SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regulado por la ANSI, la ultima revisión data de 2016, aunque cada sistema gestor hace la implementación de diferentes maneras. Estos apuntes están preparados para funcionar con PostgresSQL.
 
 ## Indice
-- Sintaxis 
-   - Enteros
-   - Cadenas de texto
-   - Colecciones (IN)
-   - Comentarios
-   - Operadores
-      - Operadores matemáticos
-      - Operadores lógicos
-         - OR
-	      - AND
-	      - NOT
-	      - Uso combinado
-   - Patrones (LIKE)
-      - Estrictos
-	   - Permisivos
-	   - Uso combinado
-   - Expresiones regulares (SIMILAR TO)
-   - Subconsultas
-   - Condiciones (CONSTRAINT)
-   - Fin de la consulta
-- DML - *Data Manipulation Language*
-   - SELECT
-     - FROM
-     - WHERE
-     - GROUP BY
-     - HAVING
-     - ORDER BY
-     - LIMIT
-   - INSERT
-   - UPDATE
-   - DELETE FROM
-   - TRUNCATE
-- DDL - *Data Declaration Language*
-   - DATABASE
-      - CREATE
-      - ALTER
-      - DROP
-   - SCHEMA
-      - CREATE
-      - ALTER
-      - DROP
-   - USER
-      - CREATE
-      - ALTER
-      - DROP
-   - DOMAIN
-      - CREATE
-      - ALTER
-      - DROP
-   - TABLE
-      - CREATE
-      - ALTER
-      - DROP
+- [Sintaxis](#sintaxis)
+   - [Enteros](#enteros)
+   - [Cadenas de texto](#cadenas-de-texto)
+   - [Colecciones (IN)](#colecciones-in)
+   - [Comentarios](#comentarios)
+   - [Operadores](#operadores)
+      - [Operadores matemáticos](#operadores-matemáticos)
+      - [Operadores lógicos](#operadores-lógicos)
+   - [Patrones (LIKE)](#patrones-like)
+   - [Expresiones regulares (SIMILAR TO)](##expresiones-regulares-similar-to)
+   - [Subconsultas](#subconsultas)
+   - [Condiciones (CONSTRAINT)](#condiciones-constraint)
+   - [Fin de la consulta](#fin-de-la-consulta)
+- [SQL - *Data Manipulation Language*](#sql---data-manipulation-language)
+   - [SELECT](#select)
+     - [FROM](#from)
+     - [WHERE](#where)
+     - [GROUP BY](#group-by)
+     - [HAVING](#having)
+     - [ORDER BY](#order-by)
+     - [LIMIT](#limit)
+   - [INSERT](#insert)
+   - [UPDATE](#update)
+   - [DELETE FROM](#delete-from)
+   - [TRUNCATE](#truncate)
+- [SQL - *Data Definition Language*](#sql---data-definition-language)
+   - [DATABASE](#database)
+   - [SCHEMA](#schema)
+   - [USER](#user)
+   - [DOMAIN](#domain)
+   - [TABLE](#table)
 
 
 ## Sintaxis
