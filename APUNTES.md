@@ -47,6 +47,16 @@ WHERE population = 1000000;
 
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
+
 ### Cadenas de texto
 Para pasar al gestor de base de datos una cadena de texto usamos la comillas simple ( `'cadena de texto'`) o las comillas dobles ( `"cadena de texto"`), dependiendo de la situación, **normalmente la comilla a usar es la simple**, pero en algunas situaciones PostgreSQL requiere que se use la comillas doble ya que de lo contrario se devuelve error en la consulta.
 
@@ -64,6 +74,10 @@ SELECT 'hola mundo';
 
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
+
 ### Colecciones (IN)
 Las colecciones son conjuntos de cadenas de texto independientes, su sintaxis es ```('elemento1','elemento2', 'elemento3', ...)```.
 ```sql
@@ -72,6 +86,10 @@ FROM world
 WHERE country IN ('Spain', 'France', 'Portugal');
 ```
 En este ejemplo, usamos la colección *(Spain, France, Portugal)* para que la consulta solo nos devuelva estos de una lista de países.
+
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
 
 ---
 
@@ -125,6 +143,9 @@ FROM algunaparte;
 SELECT -- este código -- algo
 FROM -- no funcionara -- algunaparte;
 ```
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
 
 ---
 
@@ -193,6 +214,9 @@ SELECT country
 FROM world
 WHERE continent='Africa' OR continent='Europe' AND NOT country='France';
 ```
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
 
 ---
 
@@ -246,6 +270,9 @@ country |
 -|
 Iceland |
 Ecuador |
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
 
 ---
 
@@ -266,9 +293,11 @@ Expresión | Significado
    {n,m}  | Repetición del elemento anterior ***n* y no más de *m* veces**
    (...)  | Un elemento, definido dentro de los paréntesis.
  \[...\]  | [Expresión POSIX](https://en.wikipedia.org/wiki/Regular_expression#Character_classes), definida dentro de los corchetes.
-
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### Subconsultas
 En SQL en determinadas situaciones es posible o necesario realizar consultas dentro de consultas, para ello se hace uso de los paréntesis `(` `)`, la finalidad es tener un mayor control sobre la información.
 
@@ -286,9 +315,11 @@ La parte de la consulta que se encuentra dentro del paréntesis, en este ejemplo
 country | population
 -| -
 China | 1365370000
-
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### Condiciones (CONSTRAINT)
 Un ```CONSTRAINT``` es una condición que debe cumplir la entrada de datos para poder ser aceptada por la base de datos.
 
@@ -340,23 +371,37 @@ Con el ```CONSTRAINT``` ```FOREIGN KEY``` comprobamos que los datos introducidos
 ```
 
 #### EXCLUDE
+El ```CONSTRAINT``` ```EXCLUDE``` permite comparar los valores introducidos con los ya existentes en la tabla, de darse una coincidencia, ```EXCLUDE``` impide la inserción de la nueva tupla.
+
+```sql
+EXCLUDE USING gist (<condición>)
+```
 
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### Fin de la consulta
 En SQL es necesario declarar donde acaba nuestra consulta, para ello se usa el punto y coma.
 
-> Aunque algunos sofwares como SQL pueden ser permisivos y no necesitar el `;` para realizar la consulta, es un buena practica hacer uso del punto y coma igualmente.
+> Aunque algunos sofwares como SQLzoo pueden ser permisivos y no necesitar el `;` para realizar la consulta, es un buena practica hacer uso del punto y coma igualmente.
 
 ```sql
 SELECT country
 FROM world;
 ```
-
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ## SQL - Data Manipulation Language
 Las instrucciones DML se utilizan para devolver, añadir, actualizar o modificar y/o eliminar la información contenida en la base de datos sobre la que estamos trabajando.
+
+Las instrucciones DML son: ```SELECT```, ```INSERT```, ```UPDATE```, ```DELETE FROM```, ```TRUNCATE```.
+
+---
 
 ### SELECT
 `SELECT` junto a las clausulas documentadas a continuación podemos devolver la información que tenemos contenida en la base de datos.
@@ -715,10 +760,18 @@ WHERE <condición>
 TRUNCATE <nombre-tabla> [CASCADE | RESTRICT];
 ```
 
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
+
 ## SQL - Data Definition Language
 Las instrucciones DDL tienen la finalidad de definir las estructuras que se utilizaran en la base de datos.
 
 DLL esta compuesto por ```CREATE```, ```DROP``` y ```ALTER```, estas tres instrucciones se utilizan para crear, eliminar y modificar los elementos ```DATABASE```, ```SCHEMA```, ```USER``` y ```TABLE```.
+
+---
 
 ### DATABASE
 Usando el conjunto de instrucciones DDL podemos crear, cambiar y/o eliminar una base de datos dentro del servidor Postgres.
@@ -762,6 +815,9 @@ DROP DATABASE <nombre-bd>;
 
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### SCHEMA
 Los esquemas son elementos que se utilizan para organizar la base de datos, por defecto, existe *public* al que se escribe toda la información si no se indica lo contrario.
 
@@ -805,6 +861,9 @@ Este parámetro no permite eliminar el esquema de haber contenidos referenciados
 
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### USER
 Los usuarios son las diferentes identidades con las que se puede interaccionar con el servidor, cada usuario tiene unos determinados permisos, que le restringen que actividades puede realizar o no en el servidor.
 
@@ -831,9 +890,11 @@ Usando ```DROP USER``` eliminamos un usuario existente en el servidor.
 ```sql
 DROP USER <user-country>;
 ```
-
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### DOMAIN
 Un ```DOMAIN``` nos permite establecer un *preset* para la entrada de datos que se esta haciendo en la base de datos.
 
@@ -906,6 +967,9 @@ Usando ```ADD``` podemos añadir un nuevo ```CONSTRAINT``` a un dominio ya exist
 
 ---
 
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](##sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
 ### TABLE
 Un ```TABLE``` es una estructura que se usa para almacenar la información de la base de datos.
 
