@@ -4,7 +4,7 @@ En este documento se muestran los pasos básicos para tener una instalación loc
 #### Links utiles
 👉 [Activar la virtualización por hardware](../APUNTES_conf.md#activar-la-virtualizaci%C3%B3n-por-hardware) para WSL y maquinas virtuales.
 
-👉 [Instalar WSL y Ubuntu 18.04 LTS](../APUNTES_conf.md#activar-windows-subsystem-for-linux) en Windows 10 (documentado para la versión 1909).
+👉 [Instalar WSL y Ubuntu 18.04 LTS](../APUNTES_conf.md#activar-windows-subsystem-for-linux) en Windows 10 (*documentado para la versión 1909*).
 
 ## Indice
 - [Preparando el Sistema](#preparando-el-sistema)
@@ -68,7 +68,11 @@ CREATE USER 'username' IDENTIFIED BY 'averysecurepswd';
 
 ![Consola mostrando el shell de MariaDB, tras haber ejecutado 'mysql -p'](./attachments/20.PNG?raw=true)
 
-__Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuario__ (obviando el `sudo`), ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el shell de MariaDB.
+__Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuario__ (obviando el `sudo`):
+
+1. Escribimos `\q` y pulsamos `ENTER` para salir del *shell* de MariaDB
+2. Ejecutamos `su <nuestro-usuario>` para volver a nuestra cuenta habitual en Ubuntu.
+3. Ejecutamos `mysql -p`, y, tras proporcionar la contraseña estaríamos en el shell de MariaDB.
 
 > Si no usamos el nombre de usuario de Ubuntu como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
 
@@ -80,4 +84,4 @@ Ahora el servidor ya se encuentra listo para ser usado, recordar que **cualquier
 > ```
 > ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2 "No such file or directory")
 > ```
-> Tan solo volvemos a ejecutar el comando: `sudo /etc/init.d/mysql start`.
+> Tan solo volvemos a ejecutar el comando: `sudo /etc/init.d/mysql start` y el problema deberia haberse solucionado.
