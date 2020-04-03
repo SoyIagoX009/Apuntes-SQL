@@ -132,13 +132,13 @@ Estos son los operadores matematicos soportados por SQL:
 
  Operador | Uso
  ---------|------
- +        | Suma
- -        | Resta
+ \+       | Suma
+ \-       | Resta
  =        | Comparación
  <        | Menor que...
  <=       | Menor o igual que
- >        | Mayor
- >=       | Mayor o igual que
+ \>       | Mayor
+ \>=      | Mayor o igual que
  /        | División
  ^        | Potencia
 
@@ -251,14 +251,14 @@ Expresión | Significado
 ----------|------------
    Pleca  | Opción entre alternativas
    %      | Uno o ningún elemento
-   *      | Repetición del elemento anterior **cero o más veces**
-   +      | Repetición del elemento anterior **una o más veces**
+   \*     | Repetición del elemento anterior **cero o más veces**
+   \+     | Repetición del elemento anterior **una o más veces**
    ?      | Repetición del elemento anterior **una o ninguna vez**
    {n}    | Repetición del elemento anterior ***n* veces**
    {n,}   | Repetición del elemento anterior ***n* o más veces**
    {n,m}  | Repetición del elemento anterior ***n* y no más de *m* veces**
    (...)  | Un elemento, definido dentro de los paréntesis.
-   [...]  | [Expresión POSIX](https://en.wikipedia.org/wiki/Regular_expression#Character_classes), definida dentro de los corchetes.
+ \[...\]  | [Expresión POSIX](https://en.wikipedia.org/wiki/Regular_expression#Character_classes), definida dentro de los corchetes.
 
 ---
 
@@ -616,11 +616,11 @@ Con la sentencia ```ALTER DATABASE``` podemos realizar cambios a una base de dat
 
 ```sql
 ALTER DATABASE <nombre-bd> 
-REcountry TO <nuevo-nombre>
+RENAME TO <nuevo-nombre>
 OWNER TO <nuevo-propietario>;
 ```
-##### REcountry TO
-Con ```REcountry TO``` podemos cambiar el nombre tiene actualmente la base de datos, el nuevo nombre no puede estar ocupado ya por otra base de datos.
+##### RENAME TO
+Con ```RENAME TO``` podemos cambiar el nombre tiene actualmente la base de datos, el nuevo nombre no puede estar ocupado ya por otra base de datos.
 
 ##### OWNER TO
 Usando ```OWNER TO``` cambiamos el propietario de la base de datos a otro usuario del servidor.
@@ -653,12 +653,12 @@ Con ```ALTER SCHEMA``` modificaremos la configuración de un esquema ya existent
 
 ```sql
 ALTER SCHEMA <nombre-esquema> 
-REcountry TO <nuevo-nombre>
+RENAME TO <nuevo-nombre>
 OWNER TO <nuevo-propietario>;
 ```
 
-##### REcountry TO
-Con ```REcountry TO``` podemos cambiar el nombre tiene actualmente el esquema, el nuevo nombre no puede estar ocupado ya por otro esquema existente.
+##### RENAME TO
+Con ```RENAME TO``` podemos cambiar el nombre tiene actualmente el esquema, el nuevo nombre no puede estar ocupado ya por otro esquema existente.
 
 ##### OWNER TO
 Usando ```OWNER TO``` cambiamos el propietario del esquema a otro usuario del servidor.
@@ -693,10 +693,10 @@ Usando ```ALTER USER``` cambiamos los parámetros relativos a un usuario del ser
 
 ```sql
 ALTER USER <user-country>
-REcountry TO <nuevo-nombre>;
+RENAME TO <nuevo-nombre>;
 ```
-##### REcountry TO
-Usando ```REcountry TO``` podemos renombrar un usuario existente.
+##### RENAME TO
+Usando ```RENAME TO``` podemos renombrar un usuario existente.
 
 #### DROP
 Usando ```DROP USER``` eliminamos un usuario existente en el servidor.
@@ -743,7 +743,7 @@ Con ```ALTER DOMAIN``` podemos modificar la configuración dada a un dominio exi
 
 ```sql
 ALTER DOMAIN <nombre-del-dominio>
-[REcountry <nuevo-nombre>
+[RENAME <nuevo-nombre>
  OWNER <nombre-de-usuario>
  SET SCHEMA <nombre-del-esquema>
  DROP CONSTRAINT <nombre-del-constraint>
@@ -751,8 +751,8 @@ ALTER DOMAIN <nombre-del-dominio>
 ]
 ```
 
-##### REcountry
-Con ```REcountry``` podemos cambiar el nombre que posee el dominio, el nuevo nombre no puede estar siendo usado por otro dominio ya existente.
+##### RENAME
+Con ```RENAME``` podemos cambiar el nombre que posee el dominio, el nuevo nombre no puede estar siendo usado por otro dominio ya existente.
 
 ##### OWNER
 Con ```OWNER``` modificamos el usuario al que pertenece el dominio.
