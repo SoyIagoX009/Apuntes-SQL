@@ -6,6 +6,11 @@ En este documento se muestran los pasos básicos para tener una instalación loc
 
 👉 [Instalar WSL y Ubuntu 18.04 LTS](../APUNTES_conf.md#activar-windows-subsystem-for-linux) en Windows 10 (documentado para la versión 1909).
 
+## Indice
+- [Preparando el Sistema](#preparando-el-sistema)
+- [Instalando MariaDB](#instalando-mariadb)
+- [Arrancando el servidor por primera vez](#arrancando-el-servidor-por-primera-vez)
+
 ## Preparando el Sistema
 
 ![Consola con el comando 'sudo apt-get update'](./attachments/1.PNG?raw=true)
@@ -70,3 +75,9 @@ __Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuar
 > Podemos proporcionar directamente la contraseña de usuario en el servidor haciendo `mysql -p averysecurepswd` pero, de esta manera, __la contraseña se almacenaría en el historial de comandos__, reduciendo la seguridad.
 
 Ahora el servidor ya se encuentra listo para ser usado, recordar que **cualquier usuario que creemos de esta manera tiene permiso absoluto sobre toda la información contenida en el servidor** salvo que ejecutemos consultas SQL que le cambien los permisos.
+
+> Si en futuro intentamos conectanos y se nos devuelve el error:
+> ```
+> ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/run/mysqld/mysqld.sock' (2 "No such file or directory")
+> ```
+> Tan solo volvemos a ejecutar el comando: `sudo /etc/init.d/mysql start`.
