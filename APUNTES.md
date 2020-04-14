@@ -14,6 +14,7 @@ SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regula
    - [Expresiones regulares (SIMILAR TO)](#expresiones-regulares-similar-to)
    - [Subconsultas](#subconsultas)
    - [Condiciones (CONSTRAINT)](#condiciones-constraint)
+   - [Tipos de datos](#tipos-de-datos)
    - [Fin de la consulta](#fin-de-la-consulta)
 - [SQL - *Data Manipulation Language*](#sql---data-manipulation-language)
    - [SELECT](#select)
@@ -388,10 +389,11 @@ DATETIME  | Combinación de DATE y TIME | ❗ Solo para MariaDB.
 TIMESTAMP | Combinación de DATE y TIME | ❕ En MariaDB usa el formato POSIX, se desborda debido al [bug Y2k38](https://es.wikipedia.org/wiki/Problema_del_a%C3%B1o_2038).
 SERIAL    | Genera un ID numérico, a contar desde 1 | ❗ Solo para PostgreSQL.
 AUTO_INCREMENT | Genera un ID numérico, a contar desde 1 | ❗ Solo para MariaDB.
-SMALL_INT | Entrada numérica de 16 bits | Valores de -2<sup>15</sup> a 2<sup>15</sup>..
+SERIAL    | Genera un ID numérico, a contar desde 1 | ❗ Solo para Postgres.
+SMALLINT  | Entrada numérica de 16 bits | Valores de -2<sup>15</sup> a 2<sup>15</sup>..
 INT       | Entrada numérica de 32 bits | Valores de -2<sup>31</sup> a 2<sup>31</sup>.
 BIGINT    | Entrada numérica de 64 bits | Valores de -2<sup>63</sup> a 2<sup>63</sup>.
-SERIAL
+
 ---
 
 <p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>

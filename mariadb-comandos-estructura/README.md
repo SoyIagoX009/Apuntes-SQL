@@ -4,8 +4,8 @@ En MariaDB podemos facer uso da clausula `SHOW` para ver a estructura das bases 
 ## Indice
 - [Listar as bases de datos](#listar-as-bases-de-datos)
 - [Listar as taboas dunha base de datos](#listar-as-taboas-dunha-base-de-datos)
-- [Ver as columnas dunha taboa](#ver-as-columnas-dunha-taboa)
-- [Ver as restriccións dunha taboa](#ver-as-restriccións-dunha-taboa)
+- [Ver as columnas dunha táboa](#ver-as-columnas-dunha-táboa)
+- [Ver as restricións dunha táboa](#ver-as-restricións-dunha-táboa)
 - [Ver os permisos do usuario](#ver-os-permisos-do-usuario)
 
 ## Listar as bases de datos
@@ -35,7 +35,7 @@ SHOW TABLES;
 
 ![](./imgs/3.PNG)
 
-## Ver as columnas dunha taboa
+## Ver as columnas dunha táboa
 
 Executamos a consulta:
 
@@ -45,9 +45,9 @@ SHOW COLUMNS FROM participa;
 
 ![](./imgs/4.PNG)
 
-## Ver as restriccións dunha taboa
+## Ver as restricións dunha táboa
 
-Podemos ver unha lista cas restricción vixentes executando:
+Podemos ver unha lista cas restrición vixentes executando:
 
 ```sql
 SHOW INDEX FROM departamento;

@@ -10,7 +10,7 @@ Faremos uso do exercicio resolto *Proxectos de Investigación* para crear unha b
 ## Indice
 
 - [Crear a base de datos](#crear-a-base-de-datos)
-- [Creas as taboas](#crear-as-taboas)
+- [Crear as taboas](#crear-as-taboas)
 - [Definindo restriccións](#definindo-restriccións)
     - [DNI/NIE](#DNI-NIE)
     - [Teléfono](#teléfono)
@@ -80,12 +80,12 @@ mysql -p
 
 Examinando o esquema do exercicio deseñamos unha serie de consultas que resulten na creación dunhas taboas identicas a información do esquema, **máis tarde introduciremos as distintas relacións e restriccións máis complexas**.
 
-Por defecto, faremos uso do tipo de datos ```VARCHAR(128)``` e da restricción ```NOT NULL``` para a maioria dos elementos, e dicir, dunha cadea de datos de tamaño variable de como máximo 128 caracteres que non acepte ```NULL``` como valor ([ainda que esto non é posible en todo-los casos](#consideracións-finais)), podemos dar calquer valor en lugar dos 128 que eu escollin, pero, **en MariaDB é obrigatorio declarar unha lonxitude maxima**.
+Por defecto, faremos uso do tipo de datos ```VARCHAR(128)``` e da restricción ```NOT NULL``` para a maioria dos elementos, e dicir, dunha cadea de datos de tamaño variable de como máximo 128 carácteres que non acepte ```NULL``` como valor ([ainda que esto non é posible en todo-los casos](#consideracións-finais)), podemos dar calquer valor en lugar dos 128 que eu escollin, pero, **en MariaDB é obrigatorio declarar unha lonxitude maxima**.
 
-Para os DNIs e números de telefono establecemos xa ```CHAR(9)```, para *cantidade_financiada* na taboa *financia*, usamos ```BIGINT```  e para indicar datas usamos o tipo de valor ```DATE```.
+Para os DNIs e números de telefono establecemos xa ```CHAR(9)```, para *cantidade_financiada* na táboa *financia*, usamos ```BIGINT```  e para indicar datas usamos o tipo de valor ```DATE```.
 
-###### Taboa *sede*
-![Creando a taboa](./imgs/7.PNG)
+###### táboa *sede*
+![Creando a táboa](./imgs/7.PNG)
 
 ```sql
 CREATE TABLE sede (
@@ -95,8 +95,8 @@ CREATE TABLE sede (
 ```
 
 
-###### Taboa *ubicacion*
-![Creando a taboa](./imgs/8.PNG)
+###### táboa *ubicacion*
+![Creando a táboa](./imgs/8.PNG)
 
 ```sql
 CREATE TABLE ubicacion (
@@ -105,8 +105,8 @@ CREATE TABLE ubicacion (
 );
 ```
 
-###### Taboa *departamento*
-![Creando a taboa](./imgs/9.PNG)
+###### táboa *departamento*
+![Creando a táboa](./imgs/9.PNG)
 
 ```sql
 CREATE TABLE departamento (
@@ -116,8 +116,8 @@ CREATE TABLE departamento (
 );
 ```
 
-###### Taboa *grupo*
-![Creando a taboa](./imgs/10.PNG)
+###### táboa *grupo*
+![Creando a táboa](./imgs/10.PNG)
 
 ```sql
 CREATE TABLE grupo (
@@ -128,8 +128,8 @@ CREATE TABLE grupo (
 );
 ```
 
-###### Taboa *profesor*
-![Creando a taboa](./imgs/11.PNG)
+###### táboa *profesor*
+![Creando a táboa](./imgs/11.PNG)
 
 ```sql
 CREATE TABLE profesor (
@@ -141,8 +141,8 @@ CREATE TABLE profesor (
 );
 ```
 
-###### Taboa *participa*
-![Creando a taboa](./imgs/12.PNG)
+###### táboa *participa*
+![Creando a táboa](./imgs/12.PNG)
 
 ```sql
 CREATE TABLE participa (
@@ -154,8 +154,8 @@ CREATE TABLE participa (
 );
 ```
 
-###### Taboa *proxecto*
-![Creando a taboa](./imgs/13.PNG)
+###### táboa *proxecto*
+![Creando a táboa](./imgs/13.PNG)
 
 ```sql
 CREATE TABLE proxecto (
@@ -168,8 +168,8 @@ CREATE TABLE proxecto (
 );
 ```
 
-###### Taboa *programa*
-![Creando a taboa](./imgs/14.PNG)
+###### táboa *programa*
+![Creando a táboa](./imgs/14.PNG)
 
 ```sql
 CREATE TABLE programa (
@@ -177,13 +177,13 @@ CREATE TABLE programa (
 );
 ```
 
-###### Taboa *financia*
-![Creando a taboa](./imgs/15.PNG)
+###### táboa *financia*
+![Creando a táboa](./imgs/15.PNG)
 ```sql
 CREATE TABLE financia (
     nome_programa VARCHAR(128) NOT NULL,
     codigo_proxecto VARCHAR(128) NOT NULL,
-    numero_proxecto VARCHAR(128) NOT NULL,
+    numéro_proxecto VARCHAR(128) NOT NULL,
     cantidade_financiada BIGINT NOT NULL
 );
 ```
@@ -199,7 +199,7 @@ Para garantizar que na nosa base de datos gardase información coherente, teremo
 
 Este elemento atopase nas taboas *participa* e *profesor*.
 
-Sabemos que o DNI e o NIE son unha entrada de datos de lonxitude constante, nove caracteres, so se diferencian na mascara:
+Sabemos que o DNI e o NIE son unha entrada de datos de lonxitude constante, nove carácteres, so se diferencian na mascara:
 
 - Os DNIs constan de oito dixitos e unha letra, co fin de actuar como suma de verificación dos oito dixitos anteriores.
 
@@ -214,8 +214,8 @@ Sabemos que o DNI e o NIE son unha entrada de datos de lonxitude constante, nove
 
 Coñecendo estos datos, deseñamos a seguintes restriccións, co fin de manter a maior intregidade posible para os datos contidos:
 
-###### Taboa *departamento*
-![Creando a taboa](./imgs/16.PNG)
+###### táboa *departamento*
+![Creando a táboa](./imgs/16.PNG)
 
 ```sql
 ALTER TABLE departamento
@@ -227,7 +227,7 @@ ALTER TABLE departamento
     );
 ```
 
-###### Taboa *grupo*
+###### táboa *grupo*
 ![](./imgs/17.PNG)
 ```sql
 ALTER TABLE grupo
@@ -239,7 +239,7 @@ ALTER TABLE grupo
     );
 ```
 
-###### Taboa *participa*
+###### táboa *participa*
 ![](./imgs/18.PNG)
 
 ```sql
@@ -251,7 +251,7 @@ ALTER TABLE participa
         dni REGEXP '[X|Y|Z][0-9]{7}[A-Z]'         -- Formato NIE.
     );
 ```
-###### Taboa *profesor*
+###### táboa *profesor*
 ![](./imgs/19.PNG)
 
 ```sql
@@ -265,9 +265,9 @@ ALTER TABLE profesor
 ```
 
 ### Teléfono
-Anteriormente xa definimos para os telefonos o tipo de datos ```CHAR(9)```, xa que non queremos que  non nos interesa que estos numeros poidan ser empregados como se fosen unha entrada numerica matematica, algo que seria posible de usar `SMALLINT`, `INT` ou `BIGINT`, pero, isto ten a desvantaxe que podense introducir caracteres que non sexan numeros, para solucionar isto, facemos uso desta restricción:
+Anteriormente xa definimos para os telefonos o tipo de datos ```CHAR(9)```, xa que non queremos que  non nos interesa que estos numéros poidan ser empregados como se fosen unha entrada numérica matemática, algo que seria posible de usar `SMALLINT`, `INT` ou `BIGINT`, pero, isto ten a desvantaxe que podense introducir carácteres que non sexan numéros, para solucionar isto, facemos uso desta restricción:
 
-###### Taboa *departamento*
+###### táboa *departamento*
 ![](./imgs/20.PNG)
 
 ```sql
@@ -279,9 +279,9 @@ ALTER TABLE departamento
 ```
 
 ### Nome
-Supoñemos que os datos correspondentes a un nome propio ou comun non conteran maís que letras dos alfabetos das linguas da peninsula iberica, o caracter de espazo e o punto e a coma, polo tanto, deseñamos a seguintes restriccións:
+Supoñemos que os datos correspondentes a un nome propio ou comun non conteran maís que letras dos alfabetos das linguas da península ibérica, o carácter de espazo e o punto e a coma, polo tanto, deseñamos a seguintes restriccións:
 
-###### Taboa *sede*
+###### táboa *sede*
 ![](./imgs/21.PNG)
 ```sql
 ALTER TABLE sede
@@ -290,7 +290,7 @@ ALTER TABLE sede
         nome_sede REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *ubicación*
+###### táboa *ubicación*
 ![](./imgs/22.PNG)
 ```sql
 ALTER TABLE ubicacion
@@ -301,7 +301,7 @@ ALTER TABLE ubicacion
         nome_depto REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *departamento*
+###### táboa *departamento*
 ![](./imgs/23.PNG)
 ```sql
 ALTER TABLE departamento
@@ -312,7 +312,7 @@ ALTER TABLE departamento
         director REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *grupo*
+###### táboa *grupo*
 ![](./imgs/24.PNG)
 ```sql
 ALTER TABLE grupo
@@ -325,7 +325,7 @@ ALTER TABLE grupo
         lider REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *profesor*
+###### táboa *profesor*
 ![](./imgs/25.PNG)
 ```sql
 ALTER TABLE profesor
@@ -334,7 +334,7 @@ ALTER TABLE profesor
         nome_profesor REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *proxecto*
+###### táboa *proxecto*
 ![](./imgs/26.PNG)
 ```sql
 ALTER TABLE proxecto
@@ -343,7 +343,7 @@ ALTER TABLE proxecto
         nome_proxecto REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *programa*
+###### táboa *programa*
 ![](./imgs/27.PNG)
 ```sql
 ALTER TABLE programa
@@ -352,7 +352,7 @@ ALTER TABLE programa
         nome_programa REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *financia*
+###### táboa *financia*
 ![](./imgs/28.PNG)
 ```sql
 ALTER TABLE financia
@@ -364,7 +364,7 @@ ALTER TABLE financia
 ### Cantidade de cartos
 Supoñemos que nesta base de datos non se van a rexistrar perdas economicas, o tipo de datos `BIGINT`permitiranos gardar unha cantidade de aproximadamente 9,2 trillóns (en notación europea), **tanto en negativo como en positivo**, asi que **facemos a seguinte restricción para eliminar as cantidades negativas**:
 
-###### Taboa *financia*
+###### táboa *financia*
 ![](./imgs/29.PNG)
 ```sql
 ALTER TABLE financia
@@ -377,7 +377,7 @@ ALTER TABLE financia
 ### Data de finalización
 Por loxica unha data de finalización non pode ser anterior a data de comezo (descartaremos tamen que un proxecto acabe o mesmo día que comezou), solucionamos o incoveniente coa seguinte restricción:
 
-###### Taboa participa
+###### táboa participa
 ![](./imgs/30.PNG)
 ```sql
 ALTER TABLE participa
@@ -386,7 +386,7 @@ ALTER TABLE participa
         data_cese < data_inicio
     );
 ```
-###### Taboa proxecto
+###### táboa proxecto
 ![](./imgs/31.PNG)
 ```sql
 ALTER TABLE proxecto
@@ -397,10 +397,10 @@ ALTER TABLE proxecto
 ```
 
 ### Claves primarias
-Por ultimo, definimos en cada taboa as suas determinadas claves primarias, que son requisito para despois poder interrelacionar os datos entre taboas.
+Por ultimo, definimos en cada táboa as suas determinadas claves primarias, que son requisito para despois poder interrelacionar os datos entre taboas.
 
-###### Taboa *sede*
-Para a taboa *sede* definimos a como clave primaria *nome_sede*.
+###### táboa *sede*
+Para a táboa *sede* definimos a como clave primaria *nome_sede*.
 
 ![](./imgs/32.PNG)
 ```sql
@@ -409,7 +409,7 @@ ALTER TABLE sede
     PRIMARY KEY (nome_sede);
 ```
 
-###### Taboa *ubicación*
+###### táboa *ubicación*
 Para *ubicación* definimos como clave primario o conxunto de *nome_sede* e *nome_depto*.
 
 ![](./imgs/33.PNG)
@@ -420,7 +420,7 @@ ALTER TABLE ubicacion
     PRIMARY KEY (nome_sede);
 ```
 
-###### Taboa *departamento*
+###### táboa *departamento*
 En *departamento*, *nome_depto* sera a a clave primaria.
 
 ![](./imgs/34.PNG)
@@ -429,8 +429,8 @@ ALTER TABLE departamento
  ADD CONSTRAINT departamento_pk
     PRIMARY KEY (nome_depto);
 ```
-###### Taboa *grupo*
-Na taboa *grupo* o conxunto de *nome_grupo* e *nome_depto* sera a clave primaria.
+###### táboa *grupo*
+Na táboa *grupo* o conxunto de *nome_grupo* e *nome_depto* sera a clave primaria.
 
 ![](./imgs/35.PNG)
 ```sql
@@ -438,8 +438,8 @@ ALTER TABLE grupo
  ADD CONSTRAINT grupo_pk
     PRIMARY KEY (nome_grupo, nome_depto);
 ```
-###### Taboa *profesor*
-Para a taboa profesor faremos uso do *dni* como clave primaria.
+###### táboa *profesor*
+Para a táboa profesor faremos uso do *dni* como clave primaria.
 
 ![](./imgs/36.PNG)
 ```sql
@@ -447,7 +447,7 @@ ALTER TABLE profesor
  ADD CONSTRAINT profesor_pk
     PRIMARY KEY (dni);
 ```
-###### Taboa *participa*
+###### táboa *participa*
 En participa o conxunto de *dni* e *codigo_proxecto* seran a clave primaria.
 
 ![](./imgs/37.PNG)
@@ -456,7 +456,7 @@ ALTER TABLE participa
  ADD CONSTRAINT participa_pk
     PRIMARY KEY (dni, codigo_proxecto);
 ```
-###### Taboa *proxecto*
+###### táboa *proxecto*
 Para proxecto usaremos *codigo_proxecto* como clave primaria, e, ademaís marcaremos *nome_proxecto* como clave alternativa (```UNIQUE``` + ```NOT NULL```).
 
 ![](./imgs/38.PNG)
@@ -467,8 +467,8 @@ ALTER TABLE proxecto
  ADD CONSTRAINT proxecto_ak
     UNIQUE (nome_proxecto);
 ```
-###### Taboa *programa*
-Na taboa programa, *nome_programa* sera a clave primaria.
+###### táboa *programa*
+Na táboa programa, *nome_programa* sera a clave primaria.
 
 ![](./imgs/39.PNG)
 ```sql
@@ -476,7 +476,7 @@ ALTER TABLE programa
  ADD CONSTRAINT programa_pk
     PRIMARY KEY (nome_programa);
 ```
-###### Taboa *financia*
+###### táboa *financia*
 Por ultimo, en *financia* o conxunto *nome_programa* e *codigo_proxecto* seran a clave primaria.
 
 ![](./imgs/40.PNG)
@@ -495,8 +495,8 @@ ALTER TABLE financia
 ## Relacións
 Para finalizar, con todas as taboas creadas e as restriccións definidas, procedemos a relacionar os datos entre taboas.
 
-###### Taboa *ubicación*
-Na taboa *ubicación* restrinximos *nome_sede* a valores herdarse dende a columna *nome_sede* da taboa *sede*; o mesmo caso para os valores de *nome_depto*, que deben estar herdados da taboa *departamento*.
+###### táboa *ubicación*
+Na táboa *ubicación* restrinximos *nome_sede* a valores herdarse dende a columna *nome_sede* da táboa *sede*; o mesmo caso para os valores de *nome_depto*, que deben estar herdados da táboa *departamento*.
 
 ![](./imgs/41.PNG)
 ```sql
@@ -509,8 +509,8 @@ ALTER TABLE ubicacion
     REFERENCES departamento (nome_depto);
 ```
 
-###### Taboa *departamento*
-En *departamento* restrinximos os valores que toma a clave director ao *dni* dos profesores rexistrados na taboa *profesor*. Engadiremos ```ON UPDATE CASCADE``` para que o valor se actualice de cambiarse o valor referenciado e ```ON DELTE SET NULL``` para que o valor quede en ```NULL``` de eliminarse o referenciado.
+###### táboa *departamento*
+En *departamento* restrinximos os valores que toma a clave director ao *dni* dos profesores rexistrados na táboa *profesor*. Engadiremos ```ON UPDATE CASCADE``` para que o valor se actualice de cambiarse o valor referenciado e ```ON DELTE SET NULL``` para que o valor quede en ```NULL``` de eliminarse o referenciado.
 
 ![](./imgs/42.PNG)
 ```sql
@@ -522,8 +522,8 @@ ALTER TABLE departamento
     ON DELETE SET NULL;
 ```
 
-###### Taboa *grupo*
-En *grupo* facemos unha restricción semellante a feita na taboa *departamento*, o *lider* so pode tomar por valor un *dni* dos profesores rexistrados, establecemos, ademais, que o valor se actualice de cambiar o valor do que se hereda e que pase a ser ```NULL``` se o elemento do que se hereda e borrado. 
+###### táboa *grupo*
+En *grupo* facemos unha restricción semellante a feita na táboa *departamento*, o *lider* so pode tomar por valor un *dni* dos profesores rexistrados, establecemos, ademais, que o valor se actualice de cambiar o valor do que se hereda e que pase a ser ```NULL``` se o elemento do que se hereda e borrado. 
 
 Ademaís referenciamos o departamento do grupo cun dos departamentos rexistrados, que se actualice de cambiar o valor do que se referencia e que se elimine a tuplas e o departamento desaparece.
 
@@ -541,8 +541,8 @@ ALTER TABLE grupo
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 ```
-###### Taboa *profesor*
-Na taboa *profesor* referencias a clave grupo a un dos grupos existentes na taboa *grupo*. Marcamos o elemento para actualizarse de cambiar o valor do que se hereda e para que pase a ser  ```NULL``` de borrarse o grupo referenciado.
+###### táboa *profesor*
+Na táboa *profesor* referencias a clave grupo a un dos grupos existentes na táboa *grupo*. Marcamos o elemento para actualizarse de cambiar o valor do que se hereda e para que pase a ser  ```NULL``` de borrarse o grupo referenciado.
 
 ![](./imgs/44.PNG)
 ```sql
@@ -553,8 +553,8 @@ ALTER TABLE profesor
     ON UPDATE CASCADE
     ON DELETE SET NULL;
 ```
-###### Taboa *participa*
-Para *participa* referenciamos o *dni* a un dos profesores rexistrados previamente na taboa *profesor* e o *codigo_proxecto* a un dos proxectos xa existentes na taboa *proxecto*.
+###### táboa *participa*
+Para *participa* referenciamos o *dni* a un dos profesores rexistrados previamente na táboa *profesor* e o *codigo_proxecto* a un dos proxectos xa existentes na táboa *proxecto*.
 
 Marcamos ```ON UPDATE CASCADE``` e ```ON DELETE CASCADE``` en ambalas duas referencias para que a tupla se actulice ou elimine segun cambien os elementos referenciados.
 
@@ -572,8 +572,8 @@ ALTER TABLE participa
     ON UPDATE CASCADE
     ON DELETE CASCADE;
 ```
-###### Taboa *proxecto*
-En *proxecto* referenciaremos a clave *grupo* a un *nome_grupo* existente na taboa *grupo*. Marcamos para que os datos se actulicen de cambiar o elemento referenciado e que pasen a ser ```NULL``` de eliminarse o referenciado.
+###### táboa *proxecto*
+En *proxecto* referenciaremos a clave *grupo* a un *nome_grupo* existente na táboa *grupo*. Marcamos para que os datos se actulicen de cambiar o elemento referenciado e que pasen a ser ```NULL``` de eliminarse o referenciado.
 
 ![](./imgs/46.PNG)
 ```sql
@@ -585,8 +585,8 @@ ALTER TABLE proxecto
     ON DELETE SET NULL;
 ```
 
-###### Taboa *financia*
-Por ultimo, na taboa *financia*, referenciamos *nome_programa* a un dos programas rexistados na taboa *programa* e o codigo de proxecto a un dos rexistrados en *codigo_proxecto*.
+###### táboa *financia*
+Por ultimo, na táboa *financia*, referenciamos *nome_programa* a un dos programas rexistados na táboa *programa* e o codigo de proxecto a un dos rexistrados en *codigo_proxecto*.
 
 Marcamos que os elementos se actualicen de cambiar os referenciados e que as tuplas se borren de eliminarse os referenciados.
 

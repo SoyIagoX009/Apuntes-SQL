@@ -11,8 +11,8 @@ Faremos uso do exercicio resolto *Naves espaciais* para crear unha base de datos
 
 - [Crear a base de datos](#crear-a-base-de-datos)
 - [Creas as taboas](#crear-as-taboas)
-- [Definindo restriccións](#definindo-restriccións)
-    - [Claves e codigos](#claves-e-codigos)
+- [Definindo restricións](#definindo-restricións)
+    - [Claves e códigos](#claves-e-códigos)
     - [Nomes](#nomes)
     - [Medidas](#medidas)
     - [Claves primarias](#claves-primarias)
@@ -76,9 +76,9 @@ mysql -p
 
 A partir do esquema deseñamos as seguintes consultas, que crearan a estructura da base de datos, **introduciremos as distintas relacións e restriccions mais tarde**.
 
-Para as claves e codigos utilizaremos o tipo de datos `CHAR(8)`, para datas o tipo `DATE`, `INT` e `SMALLINT` para as entradas numericas con posible interese matematico, e segun o tamaño dos datos esperados.
+Para as claves e códigos utilizaremos o tipo de datos `CHAR(8)`, para datas o tipo `DATE`, `INT` e `SMALLINT` para as entradas numéricas con posible interese matemático, e segun o tamaño dos datos esperados.
 
-###### Taboa *servizo*
+###### Táboa *servizo*
 ![](./imgs/7.PNG)
 ```sql
 CREATE TABLE servizo (
@@ -86,19 +86,19 @@ CREATE TABLE servizo (
     nome_servizo VARCHAR(128) NOT NULL
 );
 ```
-###### Taboa *dependencia*
+###### Táboa *dependencia*
 ![](./imgs/8.PNG)
 ```sql
 CREATE TABLE dependencia (
     cod_dependencia CHAR(8) NOT NULL,
-    nome_dependencia VARCHAR(128) NOT NULL,
+    nome_dependencia VARCHAR(128) NOT NULL,sdw
     clave_servizo CHAR(8) NOT NULL,
     nome_servizo VARCHAR(128) NOT NULL,
     funcion VARCHAR(128) NOT NULL,
     localizacion VARCHAR(128) NOT NULL
 );
 ```
-###### Taboa *camara*
+###### Táboa *camara*
 ![](./imgs/9.PNG)
 ```sql
 CREATE TABLE camara (
@@ -107,7 +107,7 @@ CREATE TABLE camara (
     capacidade SMALLINT NOT NULL
 );
 ```
-###### Taboa *tripulacion*
+###### Táboa *tripulacion*
 ![](./imgs/10.PNG)
 ```sql
 CREATE TABLE tripulacion (
@@ -121,7 +121,7 @@ CREATE TABLE tripulacion (
     admision DATE
 );
 ```
-###### Taboa *visita*
+###### Táboa *visita*
 ![](./imgs/11.PNG)
 ```sql
 CREATE TABLE visita (
@@ -131,7 +131,7 @@ CREATE TABLE visita (
     tempo INT
 );
 ```
-###### Taboa *planeta*
+###### Táboa *planeta*
 ![](./imgs/12.PNG)
 ```sql
 CREATE TABLE planeta (
@@ -142,7 +142,7 @@ CREATE TABLE planeta (
 );
 ```
 
-###### Taboa *habita*
+###### Táboa *habita*
 ![](./imgs/13.PNG)
 ```sql
 CREATE TABLE habita (
@@ -153,7 +153,7 @@ CREATE TABLE habita (
 ```
 
 
-###### Taboa *raza*
+###### Táboa *raza*
 ![](./imgs/14.PNG)
 ```sql
 CREATE TABLE raza (
@@ -171,13 +171,13 @@ CREATE TABLE raza (
 
 ---
 
-## Definindo restriccións
-Para garantizar que na nosa base de datos gardase información coherente, teremos que definir as restriccións necesarias para cada elemento.
+## Definindo restricións
+Para garantir que na nosa base de datos gardase información coherente, teremos que definir as restricións necesarias para cada elemento.
 
-### Claves e Codigos
-Deseñaremos unha restricción para que as claves e os codigos teñan una restricción que so permita facer uso de numeración hexadecimal (0-F), como estes datos, a pesares de ser numerico non teñen interese matematico, faremos uso do tipo de datos ``CHAR(8)`` (ya previamente establecido).
+### Claves e códigos
+Deseñaremos unha restrición para que as claves e os códigos teñan una restrición que so permita facer uso de numéración hexadecimal (0-F), como estes datos, a pesares de ser numérico non teñen interese matemático, faremos uso do tipo de datos ``CHAR(8)`` (xa previamente establecido).
 
-###### Taboa *servizo*
+###### Táboa *servizo*
 ![](./imgs/15.PNG)
 ```sql
 ALTER TABLE servizo
@@ -187,7 +187,7 @@ ALTER TABLE servizo
     );
 ```
 
-###### Taboa *dependencia*
+###### Táboa *dependencia*
 ![](./imgs/16.PNG)
 ```sql
 ALTER TABLE dependencia
@@ -201,7 +201,7 @@ ALTER TABLE dependencia
     );
 ```
 
-###### Taboa *camara*
+###### Táboa *camara*
 ![](./imgs/17.PNG)
 ```sql
 ALTER TABLE camara
@@ -211,7 +211,7 @@ ALTER TABLE camara
     );
 ```
 
-###### Taboa *tripulacion*
+###### Táboa *tripulacion*
 ![](./imgs/18.PNG)
 ```sql
 ALTER TABLE tripulacion
@@ -229,7 +229,7 @@ ALTER TABLE tripulacion
     );
 ```
 
-###### Taboa *planeta*
+###### Táboa *planeta*
 ![](./imgs/19.PNG)
 ```sql
 ALTER TABLE planeta
@@ -239,7 +239,7 @@ ALTER TABLE planeta
     );
 ```
 
-###### Taboa *habita*
+###### Táboa *habita*
 ![](./imgs/20.PNG)
 ```sql
 ALTER TABLE habita
@@ -250,9 +250,9 @@ ALTER TABLE habita
 ```
 
 ### Nomes
-Deseñamos unha restricción para gardar a integridade dos valores da base de datos que deberian ser nomes, para iso eliminamos a posibilidade de introducires ningun caracter que non sexa pertencente os alfabetos da peninsula iberica, o caracterer do espazo e o punto e a coma.
+Deseñamos unha restrición para gardar a integridade dos valores da base de datos que deberían ser nomes, para iso eliminamos a posibilidade de introducires ningún carácter que non sexa pertencente os alfabetos da península ibérica, o carácter de espazo e o punto e a coma.
 
-###### Taboa *servizo*
+###### Táboa *servizo*
 ![](./imgs/21.PNG)
 ```sql
 ALTER TABLE servizo
@@ -262,7 +262,7 @@ ALTER TABLE servizo
     );
 ```
 
-###### Taboa *dependencia*
+###### Táboa *dependencia*
 ![](./imgs/22.PNG)
 ```sql
 ALTER TABLE dependencia
@@ -283,7 +283,7 @@ ALTER TABLE dependencia
         localizacion REGEXP '%[A-Za-zÑñÇç .,]%'
  );
 ```
-###### Taboa *camara*
+###### Táboa *camara*
 ![](./imgs/23.PNG)
 ```sql
 ALTER TABLE camara
@@ -292,7 +292,7 @@ ALTER TABLE camara
         categoria REGEXP '%[A-Za-zÑñÇç .,]%'
     );
 ```
-###### Taboa *tripulacion*
+###### Táboa *tripulacion*
 ![](./imgs/24.PNG)
 ```sql
 ALTER TABLE tripulacion
@@ -310,7 +310,7 @@ ALTER TABLE tripulacion
     );
 ```
 
-###### Taboa *planeta*
+###### Táboa *planeta*
 ![](./imgs/25.PNG)
 ```sql
 ALTER TABLE planeta
@@ -320,7 +320,7 @@ ALTER TABLE planeta
     );
 ```
 
-###### Taboa *habita*
+###### Táboa *habita*
 ![](./imgs/26.PNG)
 ```sql
 ALTER TABLE habita
@@ -330,7 +330,7 @@ ALTER TABLE habita
     );
 ```
 
-###### Taboa *raza*
+###### Táboa *raza*
 ![](./imgs/27.PNG)
 ```sql
 ALTER TABLE raza
@@ -343,7 +343,7 @@ ALTER TABLE raza
 ### Medidas
 Por pura loxica, un peso ou a altura non poden ser negativos, asi que, eliminaremos esa posibilidade facendo uso destas restriccions.
 
-###### Taboa *tripulacion*
+###### Táboa *tripulacion*
 ![](./imgs/28.PNG)
 ```sql
 ALTER TABLE tripulacion
@@ -352,7 +352,7 @@ ALTER TABLE tripulacion
         antiguedad <= 0
     );
 ```
-###### Taboa *visita*
+###### Táboa *visita*
 ![](./imgs/29.PNG)
 
 ```sql
@@ -362,7 +362,7 @@ ALTER TABLE visita
         tempo < 0
     );
 ```
-###### Taboa *habita*
+###### Táboa *habita*
 ![](./imgs/30.PNG)
 ```sql
 ALTER TABLE habita
@@ -372,7 +372,7 @@ ALTER TABLE habita
     );
 ```
 
-###### Taboa *raza*
+###### Táboa *raza*
 ![](./imgs/31.PNG)
 ```sql
 ALTER TABLE raza
@@ -394,10 +394,10 @@ ALTER TABLE raza
     );
 ```
 ### Claves primarias
-Agora, editamos toda-las taboas para engadir as restriccións de clave primaria, e, ademais engadimos al claves alernativas, de habelas.
+Agora, editamos toda-las taboas para engadir as restricións de clave primaria, e, ademais engadimos al claves alernativas, de habelas.
 
-###### Taboa *servizo*
-Nesta taboa utilziaremos o conxunto de *clave_servizo* e *nome_servizo* como clave primaria.
+###### Táboa *servizo*
+Nesta táboa utilziaremos o conxunto de *clave_servizo* e *nome_servizo* como clave primaria.
 ![](./imgs/32.PNG)
 ```sql
 ALTER TABLE servizo
@@ -405,7 +405,7 @@ ALTER TABLE servizo
     PRIMARY KEY (clave_servizo, nome_servizo);
 ```
 
-###### Taboa *dependencia*
+###### Táboa *dependencia*
 En *dependencia* o *cod_dependencia* fara de clave primaria, ademaís, marcamos *nome_dependencia* como clave alternativa (`UNIQUE` + `NOT NULL`).
 
 ![](./imgs/33.PNG)
@@ -417,8 +417,8 @@ ALTER TABLE dependencia
     UNIQUE (nome_dependencia);
 ```
 
-###### Taboa *camara*
-Na taboa camara o *cod_dependencia* sera a clave primaria.
+###### Táboa *camara*
+Na táboa camara o *cod_dependencia* sera a clave primaria.
 
 ![](./imgs/34.PNG)
 
@@ -428,8 +428,8 @@ ALTER TABLE camara
     PRIMARY KEY (cod_dependencia);
 ```
 
-###### Taboa *tripulacion*
-Para a taboa *tripulacion* *cod_tripulacion* sera a clave primaria.
+###### Táboa *tripulacion*
+Para a táboa *tripulacion* *cod_tripulacion* sera a clave primaria.
 
 ![](./imgs/35.PNG)
 
@@ -439,7 +439,7 @@ ALTER TABLE tripulacion
     PRIMARY KEY (cod_tripulacion);
 ```
 
-###### Taboa *visita*
+###### Táboa *visita*
 En *visita* o conxunto de *cod_tripulacion*, *cod_planeta* e *data_visita* formaran a clave primaria.
 
 ![](./imgs/36.PNG)
@@ -450,8 +450,8 @@ ALTER TABLE visita
     PRIMARY KEY (cod_tripulacion, cod_planeta, data_visita);
 ```
 
-###### Taboa *planeta*
-Para a taboa *planeta* teremos ao *cod_planeta* como clave priamria, xunto as claves alternativas *nome_planeta* e *coordenadas*.
+###### Táboa *planeta*
+Para a táboa *planeta* teremos ao *cod_planeta* como clave priamria, xunto as claves alternativas *nome_planeta* e *coordenadas*.
 
 ![](./imgs/37.PNG)
 
@@ -465,8 +465,8 @@ ALTER TABLE planeta
     UNIQUE (coordenadas);
 ```
 
-###### Taboa *habita*
-Nesta taboa o conxunto de *cod_planeta* e *nome_raza* conformaran a clave primaria.
+###### Táboa *habita*
+Nesta táboa o conxunto de *cod_planeta* e *nome_raza* conformaran a clave primaria.
 
 ![](./imgs/38.PNG)
 
@@ -476,8 +476,8 @@ ALTER TABLE habita
     PRIMARY KEY (cod_planeta, nome_raza);
 ```
 
-###### Taboa *raza*
-Para rematar, na taboa *raza*, a clave primaria sera *nome_raza*.
+###### Táboa *raza*
+Para rematar, na táboa *raza*, a clave primaria sera *nome_raza*.
 
 ![](./imgs/39.PNG)
 
@@ -496,8 +496,8 @@ ALTER TABLE raza
 ## Relacions
 Por ultimo, relacionaremos as distintas taboas. Neste caso marcamos sempre os valores para actualizarse e borrarse en cascada en todas as relacións.
 
-###### Taboa *dependencia*
-Referenciaremos os valores da *clave_servizo* e *nome_servizo* os da *clave_servizo* e *nome_servizo* da taboa *servizo*.
+###### Táboa *dependencia*
+Referenciaremos os valores da *clave_servizo* e *nome_servizo* os da *clave_servizo* e *nome_servizo* da táboa *servizo*.
 
 ![](./imgs/40.PNG)
 
@@ -510,8 +510,8 @@ ALTER TABLE dependencia
     ON DELETE CASCADE;
 ```
 
-###### Taboa *camara*
-Para a taboa camara referenciamos o *cod_dependencia* a os *cod_dependencia* da taboa *dependencia*.
+###### Táboa *camara*
+Para a táboa camara referenciamos o *cod_dependencia* a os *cod_dependencia* da táboa *dependencia*.
 
 ![](./imgs/41.PNG)
 
@@ -524,8 +524,8 @@ ALTER TABLE camara
     ON DELETE CASCADE;
 ```
 
-###### Taboa *visita*
-Para a *visita* vinculamos os valores de *cod_tripulación* aos da taboa *tripulacion* e o *cod_planeta* a taboa *planeta*.
+###### Táboa *visita*
+Para a *visita* vinculamos os valores de *cod_tripulación* aos da táboa *tripulacion* e o *cod_planeta* a táboa *planeta*.
 
 ![](./imgs/42.PNG)
 
@@ -543,8 +543,8 @@ ALTER TABLE visita
     ON DELETE CASCADE;
 ```
 
-###### Taboa *habita*
-Por ultimo, na taboa *habita* ligamos *cod_planeta* a taboa *planeta* e o *nome_raza* a taboa *raza*.
+###### Táboa *habita*
+Por ultimo, na táboa *habita* ligamos *cod_planeta* a táboa *planeta* e o *nome_raza* a táboa *raza*.
 
 ![](./imgs/43.PNG)
 
