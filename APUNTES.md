@@ -11,7 +11,7 @@ SQL es un lenguaje de programación declarativo, lanzado en 1986, ha sido regula
       - [Operadores matemáticos](#operadores-matemáticos)
       - [Operadores lógicos](#operadores-lógicos)
    - [Patrones (LIKE)](#patrones-like)
-   - [Expresiones regulares (SIMILAR TO)](##expresiones-regulares-similar-to)
+   - [Expresiones regulares (SIMILAR TO)](#expresiones-regulares-similar-to)
    - [Subconsultas](#subconsultas)
    - [Condiciones (CONSTRAINT)](#condiciones-constraint)
    - [Fin de la consulta](#fin-de-la-consulta)
@@ -274,7 +274,11 @@ Ecuador |
 ### Expresiones regulares (SIMILAR TO)
 Los patrones funcionan de forma similar a los patrones, pero nos permiten hacer una criba más concreta.
 
+
+
 Para comprobar un dato con una expresión regular se utiliza ```SIMILAR TO <expresion-regular>```.
+
+> ❕ En MariaDB funciona exactamente igual, pero, en lugar de ```SIMILAR TO``` la instrucción se debe llamar con ```REGEXP``` o ```RLIKE``` (ambas dos son completamente identicas).
 
 Expresión | Significado
 ----------|------------
@@ -377,6 +381,29 @@ EXCLUDE USING gist (<condición>)
 *Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
 
 ---
+### Tipos de datos
+Esta tabla recoge los tipos de datos más comunes en SQL:
+
+Expresión | Significado                            | Notas
+----------|----------------------------------------|-------
+CHAR(n)   | Entrada de datos de *n* longitud
+VARCHAR(n)| Entrada de datos de hasta *n* longitud | ❕ En PostgeSQL (*n*) es opcional
+DATE      | Fecha en formato DD/MM/AAAA.
+TIME      | Hora en formato HH:MM:SS:ssssss.
+DATETIME  | Combinación de DATE y TIME | ❗ Solo para MariaDB.
+TIMESTAMP | Combinación de DATE y TIME | ❕ En MariaDB usa el formato POSIX, se desborda debido al [bug Y2k38](https://es.wikipedia.org/wiki/Problema_del_a%C3%B1o_2038).
+SERIAL    | Genera un ID numérico, a contar desde 1 | ❗ Solo para PostgreSQL.
+AUTO_INCREMENT | Genera un ID numérico, a contar desde 1 | ❗ Solo para MariaDB.
+SMALL_INT | Entrada numérica de 16 bits | Valores de -2<sup>15</sup> a 2<sup>15</sup>..
+INT       | Entrada numérica de 32 bits | Valores de -2<sup>31</sup> a 2<sup>31</sup>.
+BIGINT    | Entrada numérica de 64 bits | Valores de -2<sup>63</sup> a 2<sup>63</sup>.
+SERIAL
+---
+
+*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+
+---
+
 ### Fin de la consulta
 En SQL es necesario declarar donde acaba nuestra consulta, para ello se usa el punto y coma.
 
@@ -892,6 +919,8 @@ DROP USER <user-country>;
 ---
 ### DOMAIN
 Un ```DOMAIN``` nos permite establecer un *preset* para la entrada de datos que se esta haciendo en la base de datos.
+
+❌ MariaDB y MySQL no implementan esta funcionalidad.
 
 #### CREATE
 Con ```CREATE DOMAIN``` creamos un nuevo dominio.

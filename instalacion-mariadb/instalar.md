@@ -53,7 +53,7 @@ Ejecutaremos `sudo /etc/init.d/mysql start` para arrancar el servidor MariaDB qu
 
 ![Consola con el comando 'sudo mysql -u root -p'](./attachments/11.PNG?raw=true)
 
-Lo siguiente sera configurar un usuario en el servidor, para ello ejecutamos `sudo mysql -u root -p`, proporcionamos la contraseña de root de nuestro sistema y deberíamos haber entrado en el shell de MariaDB.
+Lo siguiente sera configurar un usuario en el servidor, para ello ejecutamos `sudo mysql -u root -p`, proporcionamos la contraseña de nuestro usuario y deberíamos haber entrado en el shell de MariaDB.
 
 ![Consola con la sentencia SQL 'CREATE USER 'iago' IDENTIFIED BY 'averysecurepswd', en el shell de MariaDB](./attachments/13.PNG?raw=true)
 
@@ -70,9 +70,8 @@ CREATE USER 'username' IDENTIFIED BY 'averysecurepswd';
 
 __Ahora ya deberíamos poder concertarnos al servidor sin permisos de superusuario__ (obviando el `sudo`):
 
-1. Escribimos `\q` y pulsamos `ENTER` para salir del *shell* de MariaDB.
-2. Ejecutamos `su <nuestro-usuario>` para volver a nuestra cuenta habitual en Ubuntu.
-3. Ejecutamos `mysql -p`, y, tras proporcionar la contraseña, estaríamos en el *shell* de MariaDB.
+- Escribimos `\q` y pulsamos `ENTER` para salir del *shell* de MariaDB.
+- Ejecutamos `mysql -p`, y, tras proporcionar la contraseña, estaríamos en el *shell* de MariaDB.
 
 > Si no usamos el nombre de usuario de Ubuntu como nombre de usuario en la base de datos tendremos que ejecutar `mysql -u nombredeusuario -p`
 
