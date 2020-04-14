@@ -3,10 +3,24 @@
 Faremos uso do exercicio resolto *Proxectos de Investigación* para crear unha base de datos nun servidor que executa MariaDB.
 
 #### Links utiles
-[📕 Enunciado do exercicio](https://github.com/davidgchaves/first-steps-with-git-and-github-wirtz-asir1-and-dam1/tree/master/exercicios-ddl/1-proxectos-de-investigacion)
-[🐱‍💻 Instalar MariaDB en Ubuntu](../instalacion-mariadb/instalar.md)
-[📙 Apuntes de DLL -- *Data Definition Language*](../APUNTES.md#sql---data-definition-language)
-[📂Scripts de esta base de datos](./mariadb-ejercicio-ddl1/scripts/README.md)
+- [📕 Enunciado do exercicio](https://github.com/davidgchaves/first-steps-with-git-and-github-wirtz-asir1-and-dam1/tree/master/exercicios-ddl/1-proxectos-de-investigacion)
+- [🐱‍💻 Instalar MariaDB en Ubuntu](../instalacion-mariadb/instalar.md)
+- [📙 Apuntes de DLL -- *Data Definition Language*](../APUNTES.md#sql---data-definition-language)
+
+## Indice
+
+- [Crear a base de datos](#crear-a-base-de-datos)
+- [Creas as taboas](#crear-as-taboas)
+- [Definindo restriccións](#definindo-restriccións)
+    - [DNI/NIE](#DNI-NIE)
+    - [Teléfono](#teléfono)
+    - [Nome](#nome)
+    - [Cartos](#cantidade-de-cartos)
+    - [Data de finalización](#data-de-finalización)
+    - [Claves primarias](#claves-primarias)
+- [Relacións](#relacións)
+- [Consideracións finais](#consideracións-finais)
+
 
 ## Crear a base de datos
 
@@ -55,6 +69,13 @@ USE DDL1;
 ```bash
 mysql -p
 ```
+
+---
+
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>
+
+---
+
 ## Crear as taboas
 
 Examinando o esquema do exercicio deseñamos unha serie de consultas que resulten na creación dunhas taboas identicas a información do esquema, **máis tarde introduciremos as distintas relacións e restriccións máis complexas**.
@@ -73,9 +94,6 @@ CREATE TABLE sede (
 );
 ```
 
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/sede.sql
-```
 
 ###### Taboa *ubicacion*
 ![Creando a taboa](./imgs/8.PNG)
@@ -85,10 +103,6 @@ CREATE TABLE ubicacion (
     nome_sede VARCHAR(128) NOT NULL,
     nome_depto VARCHAR(128) NOT NULL
 );
-```
-
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/ubicacion.sql
 ```
 
 ###### Taboa *departamento*
@@ -102,10 +116,6 @@ CREATE TABLE departamento (
 );
 ```
 
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/departamento.sql
-```
-
 ###### Taboa *grupo*
 ![Creando a taboa](./imgs/10.PNG)
 
@@ -116,10 +126,6 @@ CREATE TABLE grupo (
     area VARCHAR(128) NOT NULL,
     lider CHAR(9)
 );
-```
-
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/grupo.sql
 ```
 
 ###### Taboa *profesor*
@@ -135,10 +141,6 @@ CREATE TABLE profesor (
 );
 ```
 
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/profesor.sql
-```
-
 ###### Taboa *participa*
 ![Creando a taboa](./imgs/12.PNG)
 
@@ -150,10 +152,6 @@ CREATE TABLE participa (
     data_cese VARCHAR(128),
     dedicacion VARCHAR(128) NOT NULL
 );
-```
-
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/participa.sql
 ```
 
 ###### Taboa *proxecto*
@@ -170,10 +168,6 @@ CREATE TABLE proxecto (
 );
 ```
 
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/proxecto.sql
-```
-
 ###### Taboa *programa*
 ![Creando a taboa](./imgs/14.PNG)
 
@@ -181,10 +175,6 @@ mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/proxecto.sql
 CREATE TABLE programa (
     nome_programa VARCHAR(128) NOT NULL
 );
-```
-
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/programa.sql
 ```
 
 ###### Taboa *financia*
@@ -197,11 +187,11 @@ CREATE TABLE financia (
     cantidade_financiada BIGINT NOT NULL
 );
 ```
+---
 
-```bash
-mysql -v -p < ./mariadb-ejercicio-ddl1/scripts/1-create-table/financia.sql
-```
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>
 
+---
 ## Definindo restriccións
 Para garantizar que na nosa base de datos gardase información coherente, teremos que definir as restriccións necesarias para cada elemento.
 
@@ -412,6 +402,7 @@ Por ultimo, definimos en cada taboa as suas determinadas claves primarias, que s
 ###### Taboa *sede*
 Para a taboa *sede* definimos a como clave primaria *nome_sede*.
 
+![](./imgs/32.PNG)
 ```sql
 ALTER TABLE sede
  ADD CONSTRAINT sede_pk
@@ -420,6 +411,8 @@ ALTER TABLE sede
 
 ###### Taboa *ubicación*
 Para *ubicación* definimos como clave primario o conxunto de *nome_sede* e *nome_depto*.
+
+![](./imgs/33.PNG)
 
 ```sql
 ALTER TABLE ubicacion
@@ -430,6 +423,7 @@ ALTER TABLE ubicacion
 ###### Taboa *departamento*
 En *departamento*, *nome_depto* sera a a clave primaria.
 
+![](./imgs/34.PNG)
 ```sql
 ALTER TABLE departamento
  ADD CONSTRAINT departamento_pk
@@ -438,6 +432,7 @@ ALTER TABLE departamento
 ###### Taboa *grupo*
 Na taboa *grupo* o conxunto de *nome_grupo* e *nome_depto* sera a clave primaria.
 
+![](./imgs/35.PNG)
 ```sql
 ALTER TABLE grupo
  ADD CONSTRAINT grupo_pk
@@ -446,6 +441,7 @@ ALTER TABLE grupo
 ###### Taboa *profesor*
 Para a taboa profesor faremos uso do *dni* como clave primaria.
 
+![](./imgs/36.PNG)
 ```sql
 ALTER TABLE profesor
  ADD CONSTRAINT profesor_pk
@@ -454,6 +450,7 @@ ALTER TABLE profesor
 ###### Taboa *participa*
 En participa o conxunto de *dni* e *codigo_proxecto* seran a clave primaria.
 
+![](./imgs/37.PNG)
 ```sql
 ALTER TABLE participa
  ADD CONSTRAINT participa_pk
@@ -462,6 +459,7 @@ ALTER TABLE participa
 ###### Taboa *proxecto*
 Para proxecto usaremos *codigo_proxecto* como clave primaria, e, ademaís marcaremos *nome_proxecto* como clave alternativa (```UNIQUE``` + ```NOT NULL```).
 
+![](./imgs/38.PNG)
 ```sql
 ALTER TABLE proxecto
  ADD CONSTRAINT proxecto_pk
@@ -472,6 +470,7 @@ ALTER TABLE proxecto
 ###### Taboa *programa*
 Na taboa programa, *nome_programa* sera a clave primaria.
 
+![](./imgs/39.PNG)
 ```sql
 ALTER TABLE programa
  ADD CONSTRAINT programa_pk
@@ -480,11 +479,18 @@ ALTER TABLE programa
 ###### Taboa *financia*
 Por ultimo, en *financia* o conxunto *nome_programa* e *codigo_proxecto* seran a clave primaria.
 
+![](./imgs/40.PNG)
 ```sql
 ALTER TABLE financia
  ADD CONSTRAINT financia_pk
     PRIMARY KEY (nome_programa, codigo_proxecto);
 ```
+
+---
+
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>
+
+---
 
 ## Relacións
 Para finalizar, con todas as taboas creadas e as restriccións definidas, procedemos a relacionar os datos entre taboas.
@@ -492,6 +498,7 @@ Para finalizar, con todas as taboas creadas e as restriccións definidas, proced
 ###### Taboa *ubicación*
 Na taboa *ubicación* restrinximos *nome_sede* a valores herdarse dende a columna *nome_sede* da taboa *sede*; o mesmo caso para os valores de *nome_depto*, que deben estar herdados da taboa *departamento*.
 
+![](./imgs/41.PNG)
 ```sql
 ALTER TABLE ubicacion
  ADD CONSTRAINT sede_fk
@@ -505,6 +512,7 @@ ALTER TABLE ubicacion
 ###### Taboa *departamento*
 En *departamento* restrinximos os valores que toma a clave director ao *dni* dos profesores rexistrados na taboa *profesor*. Engadiremos ```ON UPDATE CASCADE``` para que o valor se actualice de cambiarse o valor referenciado e ```ON DELTE SET NULL``` para que o valor quede en ```NULL``` de eliminarse o referenciado.
 
+![](./imgs/42.PNG)
 ```sql
 ALTER TABLE departamento
  ADD CONSTRAINT director_fk
@@ -519,6 +527,7 @@ En *grupo* facemos unha restricción semellante a feita na taboa *departamento*,
 
 Ademaís referenciamos o departamento do grupo cun dos departamentos rexistrados, que se actualice de cambiar o valor do que se referencia e que se elimine a tuplas e o departamento desaparece.
 
+![](./imgs/43.PNG)
 ```sql
 ALTER TABLE grupo
  ADD CONSTRAINT lider_fk
@@ -535,6 +544,7 @@ ALTER TABLE grupo
 ###### Taboa *profesor*
 Na taboa *profesor* referencias a clave grupo a un dos grupos existentes na taboa *grupo*. Marcamos o elemento para actualizarse de cambiar o valor do que se hereda e para que pase a ser  ```NULL``` de borrarse o grupo referenciado.
 
+![](./imgs/44.PNG)
 ```sql
 ALTER TABLE profesor
  ADD CONSTRAINT pr_grupo_fk
@@ -548,6 +558,7 @@ Para *participa* referenciamos o *dni* a un dos profesores rexistrados previamen
 
 Marcamos ```ON UPDATE CASCADE``` e ```ON DELETE CASCADE``` en ambalas duas referencias para que a tupla se actulice ou elimine segun cambien os elementos referenciados.
 
+![](./imgs/45.PNG)
 ```sql
 ALTER TABLE participa
   ADD CONSTRAINT dni_fk
@@ -564,6 +575,7 @@ ALTER TABLE participa
 ###### Taboa *proxecto*
 En *proxecto* referenciaremos a clave *grupo* a un *nome_grupo* existente na taboa *grupo*. Marcamos para que os datos se actulicen de cambiar o elemento referenciado e que pasen a ser ```NULL``` de eliminarse o referenciado.
 
+![](./imgs/46.PNG)
 ```sql
 ALTER TABLE proxecto
  ADD CONSTRAINT po_grupo_fk
@@ -578,6 +590,7 @@ Por ultimo, na taboa *financia*, referenciamos *nome_programa* a un dos programa
 
 Marcamos que os elementos se actualicen de cambiar os referenciados e que as tuplas se borren de eliminarse os referenciados.
 
+![](./imgs/47.PNG)
 ```sql
 ALTER TABLE financia
  ADD CONSTRAINT nome_programa_pk
@@ -598,3 +611,7 @@ Cunha base de datos valeira poderianse presentar problemas cas taboas *departame
 Considero que é mellor non decascartar neste caso ```NULL``` como posible valor en lugar de declarar tuplas *dummy* para poder insertar datos sen ter o ```NULL``` como valor, pois so contamos con estas duas opcions, se non temos tuplas *dummy* e marcamos como ```NOT NULL``` e a base de datos esta valeira a insercción de tuplas nestas taboas sera imposible, e, ainda de contar xa con datos na base de datos, poderiamos caer declarar información falsa danando así a integridade da información.
 
 Outra situación donde considero útil facer uso do valor ```NULL``` e no caso da data de finalización, pois esta información quiza non exista, tamen poderiase marcar ```NOT NULL``` e marcar, por exemplo, por data de finalización *31/12/9999* pero novamente estariamos a atentar contra a integridade da información.
+
+---
+
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>

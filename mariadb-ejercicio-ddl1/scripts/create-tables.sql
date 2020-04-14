@@ -1,9 +1,0 @@
-source ./1-create-table/sede.sql
-source ./1-create-table/ubicacion.sql
-source ./1-create-table/departamento.sql
-source ./1-create-table/grupo.sql
-source ./1-create-table/profesor.sql
-source ./1-create-table/paticipa.sql
-source ./1-create-table/proxecto.sql
-source ./1-create-table/programa.sql
-source ./1-create-table/financia.sql

@@ -3,10 +3,20 @@
 Faremos uso do exercicio resolto *Naves espaciais* para crear unha base de datos nun servidor que executa MariaDB.
 
 #### Links utiles
-[📕 Enunciado do exercicio](https://github.com/davidgchaves/first-steps-with-git-and-github-wirtz-asir1-and-dam1/tree/master/exercicios-ddl/2-naves-espaciais)
-[🐱‍💻 Instalar MariaDB en Ubuntu](../instalacion-mariadb/instalar.md)
-[📙 Apuntes de DLL -- *Data Definition Language*](../APUNTES.md#sql---data-definition-language)
-[📂Scripts de esta base de datos](./mariadb-ejercicio-ddl2/scripts/README.md)
+- [📕 Enunciado do exercicio](https://github.com/davidgchaves/first-steps-with-git-and-github-wirtz-asir1-and-dam1/tree/master/exercicios-ddl/2-naves-espaciais)
+- [🐱‍💻 Instalar MariaDB en Ubuntu](../instalacion-mariadb/instalar.md)
+- [📙 Apuntes de DLL -- *Data Definition Language*](../APUNTES.md#sql---data-definition-language)
+
+## Indice
+
+- [Crear a base de datos](#crear-a-base-de-datos)
+- [Creas as taboas](#crear-as-taboas)
+- [Definindo restriccións](#definindo-restriccións)
+    - [Claves e codigos](#claves-e-codigos)
+    - [Nomes](#nomes)
+    - [Medidas](#medidas)
+    - [Claves primarias](#claves-primarias)
+- [Relacións](#relacións)
 
 ## Crear a base de datos
 
@@ -55,6 +65,13 @@ USE DDL2;
 ```bash
 mysql -p
 ```
+
+---
+
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>
+
+---
+
 ## Crear as taboas
 
 A partir do esquema deseñamos as seguintes consultas, que crearan a estructura da base de datos, **introduciremos as distintas relacións e restriccions mais tarde**.
@@ -148,7 +165,14 @@ CREATE TABLE raza (
 );
 ```
 
+---
+
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>
+
+---
+
 ## Definindo restriccións
+Para garantizar que na nosa base de datos gardase información coherente, teremos que definir as restriccións necesarias para cada elemento.
 
 ### Claves e Codigos
 Deseñaremos unha restricción para que as claves e os codigos teñan una restricción que so permita facer uso de numeración hexadecimal (0-F), como estes datos, a pesares de ser numerico non teñen interese matematico, faremos uso do tipo de datos ``CHAR(8)`` (ya previamente establecido).
@@ -225,7 +249,7 @@ ALTER TABLE habita
     );
 ```
 
-### Nomes comunes
+### Nomes
 Deseñamos unha restricción para gardar a integridade dos valores da base de datos que deberian ser nomes, para iso eliminamos a posibilidade de introducires ningun caracter que non sexa pertencente os alfabetos da peninsula iberica, o caracterer do espazo e o punto e a coma.
 
 ###### Taboa *servizo*
@@ -462,6 +486,12 @@ ALTER TABLE raza
  ADD CONSTRAINT raza_pk
     PRIMARY KEY (nome_raza);
 ```
+
+---
+
+<p align="center"><a  href="#indice"><i>Volver ó indice</i></a></p>
+
+---
 
 ## Relacions
 Por ultimo, relacionaremos as distintas taboas. Neste caso marcamos sempre os valores para actualizarse e borrarse en cascada en todas as relacións.

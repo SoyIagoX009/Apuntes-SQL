@@ -1,9 +1,0 @@
-source ./4-alter-table-foreign-keys/sede.sql
-source ./4-alter-table-foreign-keys/ubicacion.sql
-source ./4-alter-table-foreign-keys/departamento.sql
-source ./4-alter-table-foreign-keys/grupo.sql
-source ./4-alter-table-foreign-keys/profesor.sql
-source ./4-alter-table-foreign-keys/paticipa.sql
-source ./4-alter-table-foreign-keys/proxecto.sql
-source ./4-alter-table-foreign-keys/programa.sql
-source ./4-alter-table-foreign-keys/financia.sql

@@ -47,29 +47,23 @@ WHERE population = 1000000;
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
 
 ### Cadenas de texto
-Para pasar al gestor de base de datos una cadena de texto usamos la comillas simple ( `'cadena de texto'`) o las comillas dobles ( `"cadena de texto"`), dependiendo de la situación, **normalmente la comilla a usar es la simple**, pero en algunas situaciones PostgreSQL requiere que se use la comillas doble ya que de lo contrario se devuelve error en la consulta.
+Para pasar al gestor de base de datos una cadena de texto usamos la comillas simple ( `'cadena de texto'`).
 
-***Situación por defecto, la comilla simple funciona:***
 ```sql
 SELECT country
 FROM world
 WHERE country='Spain';
 ```
-***Situación donde la comilla simple se devolvería como error:***
-
-```sql
-SELECT 'hola mundo';
-```
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -84,7 +78,7 @@ En este ejemplo, usamos la colección *(Spain, France, Portugal)* para que la co
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -140,7 +134,7 @@ FROM -- no funcionara -- algunaparte;
 ```
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -211,7 +205,7 @@ WHERE continent='Africa' OR continent='Europe' AND NOT country='France';
 ```
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -267,7 +261,7 @@ Iceland |
 Ecuador |
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -294,7 +288,7 @@ Expresión | Significado
  \[...\]  | [Expresión POSIX](https://en.wikipedia.org/wiki/Regular_expression#Character_classes), definida dentro de los corchetes.
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### Subconsultas
@@ -316,7 +310,7 @@ country | population
 China | 1365370000
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### Condiciones (CONSTRAINT)
@@ -378,7 +372,7 @@ EXCLUDE USING gist (<condición>)
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### Tipos de datos
@@ -400,7 +394,7 @@ BIGINT    | Entrada numérica de 64 bits | Valores de -2<sup>63</sup> a 2<sup>63
 SERIAL
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -415,7 +409,7 @@ FROM world;
 ```
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ## SQL - Data Manipulation Language
@@ -784,7 +778,7 @@ TRUNCATE <nombre-tabla> [CASCADE | RESTRICT];
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 
@@ -837,7 +831,7 @@ DROP DATABASE <nombre-bd>;
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### SCHEMA
@@ -883,7 +877,7 @@ Este parámetro no permite eliminar el esquema de haber contenidos referenciados
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### USER
@@ -914,7 +908,7 @@ DROP USER <user-country>;
 ```
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### DOMAIN
@@ -991,7 +985,7 @@ Usando ```ADD``` podemos añadir un nuevo ```CONSTRAINT``` a un dominio ya exist
 
 ---
 
-*Volver a: [Indice](#indice) -- [Sintaxis](#sintaxis) -- [DML](#sql---data-manipulation-language) -- [DDL](#sql---data-definition-language)*
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
 
 ---
 ### TABLE
@@ -1102,3 +1096,7 @@ Este parámetro permite eliminar el esquema, junto a todos los contenidos referi
 
 ###### RESTRICT
 Este parámetro no permite eliminar el esquema de haber contenidos referenciados, **es el parámetro por defecto**.
+
+---
+
+<p align="center"><i>Volver a: <a href="#indice">Indice</a> ― <a href="#sintaxis">Sintaxis</a> ― <a href="#sql---data-manipulation-language">DML</a> ― <a href="#sql---data-definition-language">DDL</a></i></p>
